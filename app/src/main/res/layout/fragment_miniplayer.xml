@@ -22,93 +22,95 @@
             android:layout_height="@dimen/miniplayer_height"
             android:background="@android:color/black"
             android:contentDescription="@string/description_album_art"
-            app:bitmap="@{viewModel.artwork}"/>
+            app:bitmap="@{viewModel.artwork}" />
 
-        <ProgressBar
-            android:id="@+id/miniplayer_progress"
+        <SeekBar
+            android:id="@+id/now_playing_seek_bar"
             android:layout_width="match_parent"
-            android:layout_height="4dp"
-            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
-            android:layoutDirection="ltr"
-            android:progressDrawable="@drawable/progress_drawable"
-            android:layout_toRightOf="@id/miniplayer_artwork"
-            android:layout_toEndOf="@id/miniplayer_artwork"
+            android:layout_height="14dp"
+            android:layout_toRightOf="@+id/miniplayer_artwork"
             android:max="@{viewModel.songDuration}"
-            android:progress="@{viewModel.progress}"/>
+            android:progress="@{viewModel.seekBarPosition}"
+            android:progressBackgroundTint="@android:color/transparent"
+            android:splitTrack="false"
+            app:onSeekListener="@{viewModel.onSeek()}"
+            tools:ignore="UnusedAttribute" />
 
         <LinearLayout
             android:id="@+id/miniplayer_button_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layoutDirection="ltr"
-            android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_centerInParent="true">
+            android:layout_alignParentRight="true"
+            android:layout_centerInParent="true"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal">
 
             <ImageButton
                 android:id="@+id/miniplayer_play_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:src="@{viewModel.togglePlayIcon}"
-                android:tint="?textColorPrimary"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/button_play_description"
-                android:onClick="@{viewModel.onClickTogglePlay()}" />
+                android:onClick="@{viewModel.onClickTogglePlay()}"
+                android:padding="8dp"
+                android:src="@{viewModel.togglePlayIcon}"
+                android:tint="?textColorPrimary" />
 
             <ImageButton
                 android:id="@+id/miniplayer_skip_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="8dp"
-                android:src="@drawable/ic_skip_next_32dp"
-                android:tint="?textColorPrimary"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/button_skip_description"
-                android:onClick="@{viewModel.onClickSkip()}" />
+                android:onClick="@{viewModel.onClickSkip()}"
+                android:padding="8dp"
+                android:src="@drawable/ic_skip_next_32dp"
+                android:tint="?textColorPrimary" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_centerInParent="true"
-            android:layout_toRightOf="@id/miniplayer_artwork"
+            android:layout_alignParentBottom="false"
+            android:layout_centerVertical="true"
+            android:layout_marginBottom="5dp"
             android:layout_toEndOf="@+id/miniplayer_artwork"
             android:layout_toLeftOf="@id/miniplayer_button_container"
-            android:layout_toStartOf="@id/miniplayer_button_container">
+            android:layout_toRightOf="@id/miniplayer_artwork"
+            android:layout_toStartOf="@id/miniplayer_button_container"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/miniplayer_song_title"
+                style="@style/BaseText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/BaseText"
-                android:paddingLeft="16dp"
-                android:paddingStart="16dp"
-                android:paddingRight="0dp"
-                android:paddingEnd="0dp"
-                android:textColor="?attr/textColorPrimary"
-                android:textSize="14sp"
-                android:maxLines="1"
                 android:ellipsize="end"
-                android:text="@{viewModel.songTitle}"/>
+                android:maxLines="1"
+                android:paddingEnd="0dp"
+                android:paddingLeft="16dp"
+                android:paddingRight="0dp"
+                android:paddingStart="8dp"
+                android:text="@{viewModel.songTitle}"
+                android:textColor="?attr/textColorPrimary"
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/miniplayer_song_detail"
+                style="@style/BaseText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                style="@style/BaseText"
-                android:paddingLeft="8dp"
-                android:paddingStart="8dp"
-                android:paddingRight="16dp"
-                android:paddingEnd="16dp"
-                android:textColor="?attr/textColorSecondary"
-                android:textSize="14sp"
-                android:maxLines="1"
                 android:ellipsize="end"
-                android:text="@{viewModel.songArtist}"/>
+                android:maxLines="1"
+                android:paddingEnd="16dp"
+                android:paddingLeft="8dp"
+                android:paddingRight="16dp"
+                android:paddingStart="8dp"
+                android:text="@{viewModel.songArtist}"
+                android:textColor="?attr/textColorSecondary"
+                android:textSize="14sp" />
 
         </LinearLayout>
 

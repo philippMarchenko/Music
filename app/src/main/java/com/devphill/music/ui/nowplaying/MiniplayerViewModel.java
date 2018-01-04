@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
+import android.widget.SeekBar;
 
 import com.devphill.music.BR;
 import com.devphill.music.JockeyApplication;
@@ -37,6 +38,11 @@ public class MiniplayerViewModel extends BaseObservable {
     private final ObservableInt mDuration;
     private final ObservableInt mProgress;
 
+    private final ObservableInt mSeekbarPosition;
+    private final ObservableInt mCurrentPositionObservable;
+
+    private boolean mUserTouchingProgressBar;
+
     public MiniplayerViewModel(BaseFragment fragment) {
         mContext = fragment.getContext();
         JockeyApplication.getComponent(mContext).inject(this);
@@ -44,6 +50,9 @@ public class MiniplayerViewModel extends BaseObservable {
         mArtwork = new ObservableField<>();
         mProgress = new ObservableInt();
         mDuration = new ObservableInt();
+
+        mCurrentPositionObservable = new ObservableInt();
+        mSeekbarPosition = new ObservableInt();
 
         setSong(null);
 
@@ -84,6 +93,19 @@ public class MiniplayerViewModel extends BaseObservable {
                 .subscribe(mArtwork::set, throwable -> {
                     Timber.e(throwable, "Failed to set artwork");
                 });
+
+        mPlayerController.getCurrentPosition()
+                .compose(fragment.bindToLifecycle())
+                .subscribe(
+                        position -> {
+                            mCurrentPositionObservable.set(position);
+                            if (!mUserTouchingProgressBar) {
+                                mSeekbarPosition.set(position);
+                            }
+                        },
+                        throwable -> {
+                            Timber.e(throwable, "failed to update position");
+                        });
     }
 
     private void setSong(@Nullable Song song) {
@@ -115,6 +137,7 @@ public class MiniplayerViewModel extends BaseObservable {
         }
     }
 
+    @Bindable
     public ObservableInt getSongDuration() {
         return mDuration;
     }
@@ -142,6 +165,49 @@ public class MiniplayerViewModel extends BaseObservable {
 
     public View.OnClickListener onClickSkip() {
         return v -> mPlayerController.skip();
+    }
+
+    @Bindable
+    public boolean getSeekbarEnabled() {
+        return mSong != null;
+    }
+
+    @Bindable
+    public ObservableInt getSeekBarPosition() {
+        return mSeekbarPosition;
+    }
+
+    public SeekBar.OnSeekBarChangeListener onSeek() {
+        return new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                mSeekbarPosition.set(progress);
+                if (fromUser) {
+                    notifyPropertyChanged(BR.seekBarHeadMarginLeft);
+
+                    if (!mUserTouchingProgressBar) {
+                        // For keyboards and non-touch based things
+                        onStartTrackingTouch(seekBar);
+                        onStopTrackingTouch(seekBar);
+                    }
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+                mUserTouchingProgressBar = true;
+               // animateSeekBarHeadIn();
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                mUserTouchingProgressBar = false;
+             //   animateSeekBarHeadOut();
+
+                mPlayerController.seek(seekBar.getProgress());
+                mCurrentPositionObservable.set(seekBar.getProgress());
+            }
+        };
     }
 
 }

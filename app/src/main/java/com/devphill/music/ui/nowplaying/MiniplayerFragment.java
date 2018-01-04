@@ -38,13 +38,13 @@ public class MiniplayerFragment extends BaseFragment {
         mBinding = FragmentMiniplayerBinding.inflate(inflater, container, false);
         mBinding.setViewModel(new MiniplayerViewModel(this));
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-            ProgressBar progressBar = mBinding.miniplayerProgress;
-            LayerDrawable progressBarDrawable = (LayerDrawable) progressBar.getProgressDrawable();
+/*        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+          //  ProgressBar progressBar = mBinding.miniplayerProgress;
+         //   LayerDrawable progressBarDrawable = (LayerDrawable) progressBar.getProgressDrawable();
 
             Drawable progress = progressBarDrawable.findDrawableByLayerId(android.R.id.progress);
             progress.setColorFilter(mThemeStore.getAccentColor(), PorterDuff.Mode.SRC_ATOP);
-        }
+        }*/
 
         return mBinding.getRoot();
     }
