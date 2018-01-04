@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+   >
+    <data>
+        <variable name="viewModel" type="com.devphill.music.ui.library.net_songs.NetSongViewModel"/>
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:background="?selectableItemBackground"
+        android:onClick="@{viewModel.onClickSong()}">
+
+        <ProgressBar
+            android:id="@+id/progressDownload"
+            style="@android:style/Widget.ProgressBar.Horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:max="100"
+            android:progress="@{viewModel.progress}"
+            android:progressDrawable="@drawable/barstyle" />
+
+        <TextView
+            android:id="@+id/song_name"
+            style="@style/listTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="false"
+            android:layout_toRightOf="@+id/instancePlayingIndicator"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{viewModel.title}"
+            tools:text="Song Name" />
+
+        <TextView
+            android:id="@+id/song_detail"
+            style="@style/listDetailText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/song_name"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@{viewModel.detail}"
+            tools:text="Album – Artist" />
+
+        <ImageView
+            android:id="@+id/instancePlayingIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:layout_toStartOf="@+id/download"
+            android:padding="8dp"
+            android:src="@drawable/ic_play_circle_fill_24dp"
+            android:tint="?attr/colorAccent"
+            android:visibility="@{viewModel.nowPlayingIndicatorVisibility, default = gone}"
+            tools:tint="@color/accent"
+            tools:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/download"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="8dp"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:onClick="@{viewModel.onClickDownload()}"
+            app:bitmap="@{viewModel.download_image}"
+            />
+
+    </RelativeLayout>
+
+</layout>

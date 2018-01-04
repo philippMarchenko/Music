@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <plurals name="alert_confirm_duplicates">
+        <item quantity="one">Add duplicate song?</item>
+        <item quantity="other">Add duplicate songs?</item>
+    </plurals>
+    <plurals name="playlist_confirm_some_duplicates">
+        <item quantity="one">This playlist already contains one of these songs. Adding it again will
+            result in this playlist having a duplicated entry.</item>
+        <item quantity="other">This playlist already contains some of these songs. Adding them again
+            will result in this playlist having %d duplicated entries.</item>
+    </plurals>
+    <plurals name="playlist_positive_add_duplicates">
+        <item quantity="one">Add duplicate</item>
+        <item quantity="other">Add duplicates</item>
+    </plurals>
+    <plurals name="confirm_enable_sleep_timer">
+        <item quantity="one">Enabled Sleep Timer for 1 minute</item>
+        <item quantity="other">Enabled Sleep Timer for %1$d minutes</item>
+    </plurals>
+
+</resources>

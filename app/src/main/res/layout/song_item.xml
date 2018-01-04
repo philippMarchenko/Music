@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:layout_alignParentBottom="false"
+    android:layout_alignParentTop="false"
+    android:background="?attr/selectableItemBackground"
+    android:clickable="true"
+    android:descendantFocusability="blocksDescendants"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/song" />
+
+        <TextView
+            android:id="@+id/song_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/image"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="65dp"
+            android:layout_toRightOf="@+id/image"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="2"
+            android:textSize="14sp"
+            tools:text="Franz Ferdinand - Feeling Kind Of Anxious.mp3" />
+
+        <TextView
+            android:id="@+id/artist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/song_name"
+            android:layout_centerVertical="false"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="65dp"
+            android:layout_toRightOf="@+id/image"
+            android:maxLines="2"
+            android:textSize="14sp"
+            tools:text="Song" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="8dp"
+        android:textSize="14sp"
+        tools:text="3:52" />
+
+</RelativeLayout>

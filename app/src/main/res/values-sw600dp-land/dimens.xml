@@ -1,0 +1,10 @@
+<resources>
+
+    <dimen name="global_padding">46dp</dimen>
+    <item name="now_playing_control_end_weight" format="float" type="dimen">1</item>
+    <dimen name="player_frame_height">192dp</dimen>
+    <dimen name="player_frame_info_height">128dp</dimen>
+    <dimen name="player_frame_ctrl_height">64dp</dimen>
+    <dimen name="miniplayer_height">56dp</dimen>
+
+</resources>
