@@ -1,17 +1,22 @@
 package com.devphill.music.ui.library;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 
 import com.devphill.music.JockeyApplication;
 import com.devphill.music.R;
@@ -22,12 +27,15 @@ import com.devphill.music.data.store.ThemeStore;
 import com.devphill.music.databinding.FragmentLibraryBinding;
 import com.devphill.music.ui.BaseFragment;
 import com.devphill.music.ui.about.AboutActivity;
+import com.devphill.music.ui.library.my_downloads.MyDownloadsFragment;
+import com.devphill.music.ui.library.net_songs.NetSongsFragment;
 import com.devphill.music.ui.search.SearchActivity;
 import com.devphill.music.ui.settings.SettingsActivity;
+import com.github.leonardoxh.fakesearchview.FakeSearchView;
 
 import javax.inject.Inject;
 
-public class LibraryFragment extends BaseFragment {
+public class LibraryFragment extends BaseFragment implements FakeSearchView.OnSearchListener{
 
     @Inject MusicStore mMusicStore;
     @Inject PlaylistStore mPlaylistStore;
@@ -36,6 +44,8 @@ public class LibraryFragment extends BaseFragment {
 
     private FragmentLibraryBinding mBinding;
     private LibraryViewModel mViewModel;
+
+    private int currentPage = 1;
 
     public static LibraryFragment newInstance() {
         return new LibraryFragment();
@@ -73,6 +83,25 @@ public class LibraryFragment extends BaseFragment {
         setupToolbar(mBinding.toolbar);
         setHasOptionsMenu(true);
 
+        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                Log.d("LibraryFragment", "onPageScrolled " + position);
+
+                currentPage = position;
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
         return mBinding.getRoot();
     }
 
@@ -86,6 +115,10 @@ public class LibraryFragment extends BaseFragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.activity_library, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.menu_library_search);
+        FakeSearchView fakeSearchView = (FakeSearchView) MenuItemCompat.getActionView(menuItem);
+        fakeSearchView.setOnSearchListener(this);
     }
 
     @Override
@@ -95,7 +128,7 @@ public class LibraryFragment extends BaseFragment {
                 startActivity(SettingsActivity.newIntent(getContext()));
                 return true;
             case R.id.menu_library_search:
-                startActivity(SearchActivity.newIntent(getContext()));
+             //   startActivity(SearchActivity.newIntent(getContext()));
                 return true;
             case R.id.menu_library_about:
                 startActivity(AboutActivity.newIntent(getContext()));
@@ -103,6 +136,57 @@ public class LibraryFragment extends BaseFragment {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void onSearch(FakeSearchView fakeSearchView, CharSequence constraint) {
+        Log.d("LibraryFragment", "onSearch " + constraint.toString());
+
+        Intent intent = null;
+        switch(currentPage){
+            case 0:
+                intent = new Intent(NetSongsFragment.SEARCH_NET_SONGS);
+                break;
+            case 1:
+                intent = new Intent(SongFragment.SEARCH_ALL_SONGS);
+                break;
+            case 2:
+                intent = new Intent(MyDownloadsFragment.SEARCH_MY_DOWNLOADED);
+                break;
+            case 3:
+                break;
+            default:
+                break;
+
+        }
+        intent.putExtra("search", constraint);
+        getContext().sendBroadcast(intent);
+    }
+    @Override
+    public void onSearchHint(FakeSearchView fakeSearchView, CharSequence constraint) {
+        Log.d("LibraryFragment", "onSearchHint " + constraint.toString());
+
+        Intent intent = null;
+        switch(currentPage){
+            case 0:
+                intent = new Intent(NetSongsFragment.SEARCH_NET_SONGS);
+                break;
+            case 1:
+                intent = new Intent(SongFragment.SEARCH_ALL_SONGS);
+                break;
+            case 2:
+                intent = new Intent(MyDownloadsFragment.SEARCH_MY_DOWNLOADED);
+                break;
+            case 3:
+                break;
+            default:
+                break;
+
+        }
+
+        intent.putExtra("search", constraint);
+        getContext().sendBroadcast(intent);
+        fakeSearchView.clearFocus();
     }
 
 }

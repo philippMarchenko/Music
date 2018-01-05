@@ -4,6 +4,8 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 
 import com.devphill.music.ui.library.net_songs.Downloader;
 import com.marverenic.adapter.EnhancedViewHolder;
@@ -18,6 +20,7 @@ import com.devphill.music.ui.library.SongViewModel;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView.MeasurableAdapter;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView.SectionedAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class SongSection extends HeterogeneousAdapter.ListSection<Song>
@@ -25,6 +28,8 @@ public class SongSection extends HeterogeneousAdapter.ListSection<Song>
 
     private BaseActivity mActivity;
     private BaseFragment mFragment;
+
+    private List<Song> songList;
 
     public SongSection(BaseActivity activity, @NonNull List<Song> data) {
         super(data);
@@ -87,4 +92,37 @@ public class SongSection extends HeterogeneousAdapter.ListSection<Song>
             mBinding.executePendingBindings();
         }
     }
+    /*@Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence charSequence) {
+                String charString = charSequence.toString();
+                if (charString.isEmpty()) {
+                    setData(songList);
+                } else {
+                    List<Song> filteredList = new ArrayList<>();
+                    for (Song row : songList) {
+
+                        // name match condition. this might differ depending on your requirement
+                        // here we are looking for name or phone number match
+                        if (row.getSongName().toLowerCase().contains(charString.toLowerCase()) || row.getAlbumName().contains(charSequence) || row.getAlbumName().contains(charSequence)) {
+                            filteredList.add(row);
+                        }
+                    }
+
+                    setData(filteredList);
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = getData();
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
+                setData((ArrayList<Song>) filterResults.values);
+            }
+        };
+    }*/
 }

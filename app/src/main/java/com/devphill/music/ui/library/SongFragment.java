@@ -1,8 +1,13 @@
 package com.devphill.music.ui.library;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +25,7 @@ import com.devphill.music.view.BackgroundDecoration;
 import com.devphill.music.view.DividerDecoration;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -35,6 +41,10 @@ public class SongFragment extends BaseFragment {
     private ShuffleAllSection mShuffleAllSection;
     private SongSection mSongSection;
     private List<Song> mSongs;
+    private static final String LOG_TAG = "SongFragment";
+
+    public static final String SEARCH_ALL_SONGS = "search_all_songs";
+    private BroadcastReceiver br;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +58,32 @@ public class SongFragment extends BaseFragment {
                             setupAdapter();
                         },
                         throwable -> Timber.e(throwable, "Failed to get new songs"));
+
+        br = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                Log.d(LOG_TAG, intent.getCharSequenceExtra("search").toString());
+                String charString = intent.getCharSequenceExtra("search").toString();
+                if (charString.isEmpty()) {
+                    mSongSection.setData(mSongs);
+                    mAdapter.notifyDataSetChanged();
+                } else {
+                    List<Song> filteredList = new ArrayList<>();
+                    for (Song row : mSongs) {
+                        if (row.getSongName().toLowerCase().contains(charString.toLowerCase())
+                                || row.getAlbumName().toLowerCase().contains(charString.toLowerCase())
+                                || row.getArtistName().toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(row);
+                        }
+                    }
+                    mSongSection.setData(filteredList);
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+        };
+
+        getContext().registerReceiver(br,new IntentFilter(SEARCH_ALL_SONGS));
     }
 
     @Override
@@ -55,7 +91,7 @@ public class SongFragment extends BaseFragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_library_page, container, false);
-        mRecyclerView = (FastScrollRecyclerView) view.findViewById(R.id.library_page_list);
+        mRecyclerView =  view.findViewById(R.id.library_page_list);
         mRecyclerView.addItemDecoration(new BackgroundDecoration());
         mRecyclerView.addItemDecoration(new DividerDecoration(getContext(), R.id.empty_layout));
 
@@ -81,6 +117,14 @@ public class SongFragment extends BaseFragment {
         mRecyclerView = null;
         mAdapter = null;
         mSongSection = null;
+
+        try {
+            getContext().unregisterReceiver(br);
+        }
+        catch (Exception e){
+            Log.d(LOG_TAG, "Не удалось снять с регистрации приемник" + e.getMessage());
+        }
+
     }
 
     private void setupAdapter() {
@@ -88,9 +132,8 @@ public class SongFragment extends BaseFragment {
             return;
         }
 
-        if (mSongSection != null && mShuffleAllSection != null) {
+        if (mSongSection != null ) {
             mSongSection.setData(mSongs);
-            mShuffleAllSection.setData(mSongs);
             mAdapter.notifyDataSetChanged();
         } else {
             mAdapter = new HeterogeneousFastScrollAdapter();
@@ -98,8 +141,8 @@ public class SongFragment extends BaseFragment {
             mRecyclerView.setAdapter(mAdapter);
 
             mSongSection = new SongSection(this, mSongs);
-            mShuffleAllSection = new ShuffleAllSection(this, mSongs);
-            mAdapter.addSection(mShuffleAllSection);
+           // mShuffleAllSection = new ShuffleAllSection(this, mSongs);
+           // mAdapter.addSection(mShuffleAllSection);
             mAdapter.addSection(mSongSection);
             mAdapter.setEmptyState(new LibraryEmptyState(getActivity()));
         }

@@ -1,9 +1,14 @@
 package com.devphill.music.ui.library.my_downloads;
 
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,14 +31,14 @@ import java.util.List;
 
 public class MyDownloadsFragment extends BaseFragment {
 
-    // @Inject MusicStore mMusicStore;
-
     private FastScrollRecyclerView mRecyclerView;
     private HeterogeneousAdapter mAdapter;
     private SongSection mSongSection;
     private List<Song> mSongs = new ArrayList<>();
-    private Song mModel;
 
+    private static final String LOG_TAG = "MyDownloadsFragment";
+    public static final String SEARCH_MY_DOWNLOADED = "search_my_downloaded";
+    private BroadcastReceiver br;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -66,6 +71,30 @@ public class MyDownloadsFragment extends BaseFragment {
         int paddingH = (int) getActivity().getResources().getDimension(R.dimen.global_padding);
         view.setPadding(paddingH, 0, paddingH, 0);
 
+        br = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Log.d(LOG_TAG, intent.getCharSequenceExtra("search").toString());
+                String charString = intent.getCharSequenceExtra("search").toString();
+                if (charString.isEmpty()) {
+                    mSongSection.setData(mSongs);
+                    mAdapter.notifyDataSetChanged();
+                } else {
+                    List<Song> filteredList = new ArrayList<>();
+                    for (Song row : mSongs) {
+                        if (row.getSongName().toLowerCase().contains(charString.toLowerCase())
+                                || row.getAlbumName().toLowerCase().contains(charString.toLowerCase())
+                                || row.getArtistName().toLowerCase().contains(charString.toLowerCase())) {
+                            filteredList.add(row);
+                        }
+                    }
+                    mSongSection.setData(filteredList);
+                    mAdapter.notifyDataSetChanged();
+                }
+            }
+        };
+        getContext().registerReceiver(br,new IntentFilter(SEARCH_MY_DOWNLOADED));
+
         return view;
     }
 
@@ -75,7 +104,12 @@ public class MyDownloadsFragment extends BaseFragment {
         mRecyclerView = null;
         mAdapter = null;
         mSongSection = null;
-    }
+        try {
+            getContext().unregisterReceiver(br);
+        }
+        catch (Exception e){
+            Log.d(LOG_TAG, "Не удалось снять с регистрации приемник" + e.getMessage());
+        }    }
 
     private void setupAdapter() {
         if (mRecyclerView == null || mSongs == null) {

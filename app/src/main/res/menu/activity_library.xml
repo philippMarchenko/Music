@@ -5,7 +5,8 @@
         android:id="@+id/menu_library_search"
         android:icon="@drawable/ic_search_24dp"
         android:title="@string/header_search"
-        app:showAsAction="ifRoom" />
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="com.github.leonardoxh.fakesearchview.FakeSearchView"/>
 
     <item
         android:id="@+id/menu_library_settings"

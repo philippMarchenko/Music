@@ -1,5 +1,9 @@
 package com.devphill.music.ui.library.net_songs;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import android.support.v7.widget.LinearLayoutManager;
@@ -45,26 +49,25 @@ public class NetSongsFragment extends BaseFragment {
     private HeterogeneousAdapter mAdapter;
     private NetSongsAdapter netSongsAdapter;
 
-    private ShuffleAllSection mShuffleAllSection;
-    private NetSongSection mSongSection;
+
     private List<Song> mSongs = new ArrayList<>();
     private List<Song> downloadedSongsList = new ArrayList<>();
 
-    private Boolean isLoading = false;
+    private String keywordsSearch;
+
     private int numberOfPages = 1;
-    private int numberOfItems = 0;
-    public boolean stateOfFragment = false;
 
     protected PlayerController mPlayerController;
 
     private static final String LOG_TAG = "NetSongsFragment";
+    public static final String SEARCH_NET_SONGS = "search_net_songs";
+    private BroadcastReceiver br;
 
     Downloader downloader;
 
     int progressLast;
     int playingLastPosition;
 
-    boolean isFirstloaded = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -99,7 +102,7 @@ public class NetSongsFragment extends BaseFragment {
                         if (page <= numberOfPages) {
 
                             progressBar.setVisibility(ProgressBar.VISIBLE);
-                            listSong("Элджей" + Constants.ZF_FM_NEXT_PAGE + page);
+                            listSong(keywordsSearch + Constants.ZF_FM_NEXT_PAGE + page);
                             Log.e(LOG_TAG, "" + page + "  " + numberOfPages);
 
                         }
@@ -110,12 +113,27 @@ public class NetSongsFragment extends BaseFragment {
         netSongsAdapter = new NetSongsAdapter(getContext(),getActivity(),mSongs);
         mRecyclerView.setAdapter(netSongsAdapter);
 
+        br = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                mSongs.clear();
+                netSongsAdapter.notifyDataSetChanged();
+                progressBar.setVisibility(View.VISIBLE);
+                keywordsSearch = intent.getCharSequenceExtra("search").toString();
+                listSong(keywordsSearch);
+
+            }
+        };
+
+        getContext().registerReceiver(br,new IntentFilter(SEARCH_NET_SONGS));
+
         initOnClickSongListener();
 
         int paddingH = (int) getActivity().getResources().getDimension(R.dimen.global_padding);
         view.setPadding(paddingH, 0, paddingH, 0);
 
-        listSong("Элджей");
+        listSong(keywordsSearch);
 
 
         Log.d(LOG_TAG,"onCreateView");
@@ -205,7 +223,8 @@ public class NetSongsFragment extends BaseFragment {
 
                 try{
                     mSongs.addAll(value);
-                    Log.d(LOG_TAG, "getDownloadedSongList " + downloadedSongsList.size());
+                    Log.d(LOG_TAG, "onNext mSongs size " + mSongs.size());
+                    Log.d(LOG_TAG, "numberOfPages " + numberOfPages);
 
                     for (int i = 0; i < mSongs.size(); i++){
 
@@ -252,6 +271,12 @@ public class NetSongsFragment extends BaseFragment {
         netSongsAdapter = null;
         mSongs = null;
         downloader.release();
+        try {
+            getContext().unregisterReceiver(br);
+        }
+        catch (Exception e){
+            Log.d(LOG_TAG, "Не удалось снять с регистрации приемник" + e.getMessage());
+        }
     }
 
     private void getDownloadedSongList(){

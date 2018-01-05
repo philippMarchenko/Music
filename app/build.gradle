@@ -127,4 +127,7 @@ dependencies {
     implementation 'com.mani:ThinDownloadManager:1.4.0'
 
     implementation 'org.jsoup:jsoup:1.10.3'
+
+    implementation 'com.github.leonardoxh:fake-search-view:0.3.1'
+
 }
