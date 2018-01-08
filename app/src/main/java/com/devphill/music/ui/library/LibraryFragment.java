@@ -2,6 +2,7 @@ package com.devphill.music.ui.library;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
@@ -17,6 +18,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListAdapter;
 
 import com.devphill.music.JockeyApplication;
 import com.devphill.music.R;
@@ -34,6 +38,9 @@ import com.devphill.music.ui.settings.SettingsActivity;
 import com.github.leonardoxh.fakesearchview.FakeSearchView;
 import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.inject.Inject;
 
 public class LibraryFragment extends BaseFragment{
@@ -49,6 +56,8 @@ public class LibraryFragment extends BaseFragment{
     private int currentPage = 1;
 
     private MaterialSearchView materialSearchView;
+
+    private List<String> suggestionList = new ArrayList<>();
 
     public static LibraryFragment newInstance() {
         return new LibraryFragment();
@@ -92,10 +101,30 @@ public class LibraryFragment extends BaseFragment{
 
         materialSearchView.setHint("Ведите название...");
 
+        suggestionList.add("ewgwqeg");
+        suggestionList.add("wgweg");
+        suggestionList.add("ewgwegwQWwqeg");
+
+        String[]  suggestionArr = new String[suggestionList.size()];
+        suggestionArr = suggestionList.toArray(suggestionArr);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
+                R.layout.suggestion,R.id.textView,
+                suggestionArr);
+
+        materialSearchView.setSuggestions(suggestionList.toArray(new String[0]));
+        materialSearchView.setAdapter(adapter);
+        materialSearchView.setOnItemClickListener((parent, view, position, id) -> {
+            String query = (String) parent.getItemAtPosition(position);
+            materialSearchView.closeSearch();
+        });
+
         materialSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
                 sendDataToFragment(query);
+
+                suggestionList.add(query);
                 return false;
             }
 
@@ -103,6 +132,18 @@ public class LibraryFragment extends BaseFragment{
             public boolean onQueryTextChange(String newText) {
                 sendDataToFragment(newText);
                 return false;
+            }
+        });
+
+        materialSearchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
+            @Override
+            public void onSearchViewShown() {
+                materialSearchView.showSuggestions();
+            }
+
+            @Override
+            public void onSearchViewClosed() {
+                materialSearchView.dismissSuggestions();
             }
         });
 
@@ -149,6 +190,7 @@ public class LibraryFragment extends BaseFragment{
         intent.putExtra("search", text);
         getContext().sendBroadcast(intent);
     }
+
     private void setupToolbar(Toolbar toolbar) {
         if (getActivity() instanceof AppCompatActivity) {
             AppCompatActivity activity = (AppCompatActivity) getActivity();
