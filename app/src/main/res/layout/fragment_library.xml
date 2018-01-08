@@ -13,31 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/library_app_bar_layout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary">
-
-            <android.support.v7.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:layout_scrollFlags="scroll|enterAlways|snap"/>
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/library_tabs"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layoutDirection="ltr"
-                app:tabIndicatorColor="?attr/colorAccent"
-                app:tabSelectedTextColor="#fff"
-                app:tabTextColor="#bfff"
-                app:tabMode="scrollable" />
-
-        </android.support.design.widget.AppBarLayout>
-
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/library_refresh_layout"
             android:layout_width="match_parent"
@@ -70,5 +45,41 @@
             app:fabSize="normal"
             app:layout_behavior="com.devphill.music.view.FABMenu$Behavior"/>
 
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/library_app_bar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary">
+            <FrameLayout
+                android:id="@+id/toolbar_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+                    app:layout_scrollFlags="scroll|enterAlways|snap"
+                    />
+
+                <com.miguelcatalan.materialsearchview.MaterialSearchView
+                    android:id="@+id/search_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="55dp"
+                   />
+            </FrameLayout>
+            <android.support.design.widget.TabLayout
+                android:id="@+id/library_tabs"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="ltr"
+                app:tabIndicatorColor="?attr/colorAccent"
+                app:tabMode="scrollable"
+                app:tabSelectedTextColor="#fff"
+                app:tabTextColor="#bfff" />
+
+        </android.support.design.widget.AppBarLayout>
     </android.support.design.widget.CoordinatorLayout>
 </layout>

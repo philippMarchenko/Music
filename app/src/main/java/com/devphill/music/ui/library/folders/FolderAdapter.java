@@ -71,7 +71,7 @@ public class FolderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 folderViewHolder.title.setText(mList.get(position).getFolder().getFolder_name());   //пишем имя папки
                 folderViewHolder.count_songs.setText(mList.get(position).getFolder().getCount_songs() + " песен"); //пишем сколько там песен
                 folderViewHolder.layout.setOnClickListener(view -> {    //слушатель нажатия на елемент списка
-                    onClickListener.onFolderClickListener(position);    //передаем чепрез интерфейс в фрагмент
+                    onClickListener.onFolderClickListener(mList.get(position).getFolder().getId());    //передаем чепрез интерфейс в фрагмент
                 });
                 break;
             case FolderSong.TYPE_SONG:                                                              //если это песня

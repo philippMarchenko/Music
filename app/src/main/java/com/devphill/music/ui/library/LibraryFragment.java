@@ -32,10 +32,11 @@ import com.devphill.music.ui.library.net_songs.NetSongsFragment;
 import com.devphill.music.ui.search.SearchActivity;
 import com.devphill.music.ui.settings.SettingsActivity;
 import com.github.leonardoxh.fakesearchview.FakeSearchView;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 import javax.inject.Inject;
 
-public class LibraryFragment extends BaseFragment implements FakeSearchView.OnSearchListener{
+public class LibraryFragment extends BaseFragment{
 
     @Inject MusicStore mMusicStore;
     @Inject PlaylistStore mPlaylistStore;
@@ -46,6 +47,8 @@ public class LibraryFragment extends BaseFragment implements FakeSearchView.OnSe
     private LibraryViewModel mViewModel;
 
     private int currentPage = 1;
+
+    private MaterialSearchView materialSearchView;
 
     public static LibraryFragment newInstance() {
         return new LibraryFragment();
@@ -83,6 +86,26 @@ public class LibraryFragment extends BaseFragment implements FakeSearchView.OnSe
         setupToolbar(mBinding.toolbar);
         setHasOptionsMenu(true);
 
+        materialSearchView = mBinding.searchView;
+        materialSearchView.setCursorDrawable(R.drawable.custom_cursor);
+        materialSearchView.setBackgroundColor(getResources().getColor(R.color.primary));
+
+        materialSearchView.setHint("Ведите название...");
+
+        materialSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                sendDataToFragment(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                sendDataToFragment(newText);
+                return false;
+            }
+        });
+
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -105,6 +128,27 @@ public class LibraryFragment extends BaseFragment implements FakeSearchView.OnSe
         return mBinding.getRoot();
     }
 
+    private void sendDataToFragment(String text){
+        Intent intent = null;
+        switch(currentPage){
+            case 0:
+                intent = new Intent(NetSongsFragment.SEARCH_NET_SONGS);
+                break;
+            case 1:
+                intent = new Intent(SongFragment.SEARCH_ALL_SONGS);
+                break;
+            case 2:
+                intent = new Intent(MyDownloadsFragment.SEARCH_MY_DOWNLOADED);
+                break;
+            case 3:
+                break;
+            default:
+                break;
+
+        }
+        intent.putExtra("search", text);
+        getContext().sendBroadcast(intent);
+    }
     private void setupToolbar(Toolbar toolbar) {
         if (getActivity() instanceof AppCompatActivity) {
             AppCompatActivity activity = (AppCompatActivity) getActivity();
@@ -116,12 +160,16 @@ public class LibraryFragment extends BaseFragment implements FakeSearchView.OnSe
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.activity_library, menu);
 
-        MenuItem menuItem = menu.findItem(R.id.menu_library_search);
+     /*   MenuItem menuItem = menu.findItem(R.id.menu_library_search);
         FakeSearchView fakeSearchView = (FakeSearchView) MenuItemCompat.getActionView(menuItem);
-        fakeSearchView.setOnSearchListener(this);
+        fakeSearchView.setOnSearchListener(this);*/
+
+        MenuItem item = menu.findItem(R.id.action_search);
+        materialSearchView.setMenuItem(item);
     }
 
-    @Override
+
+   @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_library_settings:
@@ -138,7 +186,9 @@ public class LibraryFragment extends BaseFragment implements FakeSearchView.OnSe
         }
     }
 
-    @Override
+
+
+/*    @Override
     public void onSearch(FakeSearchView fakeSearchView, CharSequence constraint) {
         Log.d("LibraryFragment", "onSearch " + constraint.toString());
 
@@ -187,6 +237,6 @@ public class LibraryFragment extends BaseFragment implements FakeSearchView.OnSe
         intent.putExtra("search", constraint);
         getContext().sendBroadcast(intent);
         fakeSearchView.clearFocus();
-    }
+    }*/
 
 }

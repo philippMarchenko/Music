@@ -91,6 +91,7 @@ public class FoldersFragment extends BaseFragment{
     PlayerController mPlayerController;
 
     private boolean firstShowList = false;                            //первый раз показываем список
+    private int countFolders = 0;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -207,7 +208,7 @@ public class FoldersFragment extends BaseFragment{
         int mPosition = position;
 
         if(firstShowList){      //если мы внутри какой то папки то сдвинем позицию на один вниз, компенсируя елемент "Вверх"
-            mPosition = position - 1;
+            mPosition = position;
         }
 
         refreshGallery(currentFolderList.get(mPosition).getAbsolutePath());
@@ -253,10 +254,10 @@ public class FoldersFragment extends BaseFragment{
         int mPosition;
 
         if(!firstShowList){ //если это корневая папка то нету елемента вверх
-             mPosition = position - currentFolderList.size();    //позиция клмкнутой песни
+             mPosition = position - countFolders;       //позиция кликнутой песни
         }
         else{
-             mPosition = position - currentFolderList.size() - 1;    //позиция клмкнутой песни
+             mPosition = position - countFolders - 1;    //позиция клмкнутой песни
         }
                                                                     //общая позиция в списке минус сколько папок минус вверх
         mPlayerController.setQueue(currentSongList, mPosition);
@@ -301,6 +302,8 @@ public class FoldersFragment extends BaseFragment{
 
     public Observable getFoldersSongs(final String path) {
 
+        countFolders = 0;
+
         Observable observable = Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
             public void subscribe(final ObservableEmitter emitter) throws Exception {
@@ -325,8 +328,13 @@ public class FoldersFragment extends BaseFragment{
                         String selectionsF = MediaStoreUtil.getDirectoryInclusionExclusionSelection(currentFolderList.get(i).getAbsolutePath());
                         List<Song> songList =  MediaStoreUtil.getSongs(getContext(),selectionsF, null);  //список песен там
 
-                        Folder folder = new Folder(currentFolderList.get(i).getAbsolutePath(),currentFolderList.get(i).getName(),songList.size());
-                        folderSongs.add(new FolderSong(folder,FolderSong.TYPE_FOLDER)); //добавили все папки
+
+                        Folder folder = new Folder(currentFolderList.get(i).getAbsolutePath(),currentFolderList.get(i).getName(),songList.size(),i);
+
+                        if(songList.size() > 0){
+                            folderSongs.add(new FolderSong(folder,FolderSong.TYPE_FOLDER)); //добавили все папки
+                            countFolders++;
+                        }
                     }
 
                     for(int i = 0; i < currentSongList.size(); i++){

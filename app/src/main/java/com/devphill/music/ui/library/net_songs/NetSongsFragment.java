@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.devphill.music.data.store.MediaStoreUtil;
 import com.devphill.music.data.store.SharedPreferenceStore;
@@ -120,7 +123,7 @@ public class NetSongsFragment extends BaseFragment {
                 mSongs.clear();
                 netSongsAdapter.notifyDataSetChanged();
                 progressBar.setVisibility(View.VISIBLE);
-                keywordsSearch = intent.getCharSequenceExtra("search").toString();
+                keywordsSearch = intent.getStringExtra("search");
                 listSong(keywordsSearch);
 
             }
@@ -133,7 +136,15 @@ public class NetSongsFragment extends BaseFragment {
         int paddingH = (int) getActivity().getResources().getDimension(R.dimen.global_padding);
         view.setPadding(paddingH, 0, paddingH, 0);
 
-        listSong(keywordsSearch);
+
+        String netType = getNetworkType(getContext());
+        if(netType == null){
+            Toast.makeText(getContext(), "Подключение к сети отсутствует!", Toast.LENGTH_LONG).show();
+            progressBar.setVisibility(View.INVISIBLE);
+        }
+        else {
+            listSong(keywordsSearch);
+        }
 
 
         Log.d(LOG_TAG,"onCreateView");
@@ -146,6 +157,7 @@ public class NetSongsFragment extends BaseFragment {
         Log.d(LOG_TAG,"onResume");
 
     }
+
     @Override
     public void onPause() {
         super.onPause();
@@ -154,6 +166,7 @@ public class NetSongsFragment extends BaseFragment {
         Log.d(LOG_TAG,"onPause");
 
     }
+
     private void initOnClickSongListener(){
 
         netSongsAdapter.setOnClickListenet(new NetSongsAdapter.OnClickListener() {
@@ -288,4 +301,15 @@ public class NetSongsFragment extends BaseFragment {
         catch(Exception e){
         }
     }
+
+    private String getNetworkType(Context context) {
+        ConnectivityManager cm =
+                (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        if (activeNetwork != null) {
+            return activeNetwork.getTypeName();
+        }
+        return null;
+    }
+
 }

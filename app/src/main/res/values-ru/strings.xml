@@ -57,48 +57,48 @@
     <string name="action_sort_date_added">Сортировать по дате добавления</string>
     <string name="action_sort_date_played">Сортировать по дате</string>
     <string name="action_disable_shuffle">Отключить перетасовку</string>
-    <string name="action_enable_shuffle">Enable shuffle</string>
-    <string name="action_enable_repeat">Enable repeat</string>
-    <string name="action_disable_sleep_timer">Disable Sleep Timer</string>
-    <string name="action_add_queue_to_playlist">Add queue to playlist&#8230;</string>
-    <string name="action_clear_queue">Clear queue</string>
-    <string name="action_done">Done</string>
-    <string name="action_select">Select</string>
-    <string name="action_navigate_up">Go up</string>
+    <string name="action_enable_shuffle">Включить перемешивание</string>
+    <string name="action_enable_repeat">Включить повтор</string>
+    <string name="action_disable_sleep_timer">Отключить таймер сна</string>
+    <string name="action_add_queue_to_playlist">Добавить в очередь плейлиста&#8230;</string>
+    <string name="action_clear_queue">Очитсить очередь</string>
+    <string name="action_done">Завершить</string>
+    <string name="action_select">Выбрать</string>
+    <string name="action_navigate_up">Вверх</string>
     <string name="action_include">Include folder</string>
     <string name="action_exclude">Exclude folder</string>
-    <string name="action_remove">Remove</string>
+    <string name="action_remove">Удалить</string>
 
     <!-- Item menu actions -->
-    <string name="action_queue_next">Queue next</string>
-    <string name="action_queue_last">Queue last</string>
-    <string name="action_navigate_to_artist">Go to artist</string>
+    <string name="action_queue_next">Следующий в очереди</string>
+    <string name="action_queue_last">Предыдущий в очереди</string>
+    <string name="action_navigate_to_artist">Перейти к исполнителю</string>
     <string name="action_navigate_to_album">Go to album</string>
-    <string name="action_add_to_playlist">Add to playlist&#8230;</string>
-    <string name="action_delete">Delete</string>
-    <string name="action_edit_smart_playlist">Edit&#8230;</string>
+    <string name="action_add_to_playlist">Добавить в плейлист&#8230;</string>
+    <string name="action_delete">Удалить</string>
+    <string name="action_edit_smart_playlist">Изменить&#8230;</string>
 
     <!-- Other Actions -->
-    <string name="action_skip">Skip</string>
-    <string name="action_play">Play</string>
-    <string name="action_pause">Pause</string>
-    <string name="action_previous">Previous</string>
-    <string name="action_undo">Undo</string>
-    <string name="action_create">Create</string>
-    <string name="action_cancel">Cancel</string>
-    <string name="action_add">Add</string>
-    <string name="action_add_new">Add new</string>
-    <string name="action_agree">Agree</string>
-    <string name="action_try_again">Try again</string>
-    <string name="action_open_settings">Open settings</string>
-    <string name="action_make_new_playlist">Make new playlist&#8230;</string>
-    <string name="action_add_rule">Add rule</string>
-    <string name="action_save">Save</string>
-    <string name="action_discard">Discard</string>
-    <string name="action_discard_changes">Discard changes</string>
-    <string name="action_edit_playlist_rules">Edit filters</string>
+    <string name="action_skip">Спрятать</string>
+    <string name="action_play">Играть</string>
+    <string name="action_pause">Пауза</string>
+    <string name="action_previous">Предыдущий</string>
+    <string name="action_undo">Следующий</string>
+    <string name="action_create">Создать</string>
+    <string name="action_cancel">Отмена</string>
+    <string name="action_add">Добавить</string>
+    <string name="action_add_new">Добавить новый</string>
+    <string name="action_agree">Принять</string>
+    <string name="action_try_again">Попробовать снова</string>
+    <string name="action_open_settings">Открыть настройки</string>
+    <string name="action_make_new_playlist">Создать новый плейлист&#8230;</string>
+    <string name="action_add_rule">Добавить правила</string>
+    <string name="action_save">Сохранить</string>
+    <string name="action_discard">Отменить</string>
+    <string name="action_discard_changes">Отменить изменения</string>
+    <string name="action_edit_playlist_rules">Редактированть фильтры</string>
     <string name="action_open_in_last_fm" translatable="false">Last.fm</string>
-    <string name="action_shuffle_all">Shuffle all</string>
+    <string name="action_shuffle_all">Перемешать все</string>
 
     <!-- Confirmation messages -->
     <string name="confirm_disable_shuffle">Disabled shuffle</string>
@@ -113,16 +113,15 @@
     <string name="confirm_removed_rule">Removed rule</string>
 
     <!-- Dialog messages -->
-    <string name="prompt_save_changes">Save changes?</string>
-    <string name="prompt_discard_changes">Discard changes?</string>
+    <string name="prompt_save_changes">Сохранить изменения?</string>
+    <string name="prompt_discard_changes">Отменить изменения?</string>
 
     <!-- Error messages -->
-    <string name="message_refresh_library_no_permission">Jockey doesn\'t have permission to read
-        your music</string>
-    <string name="message_play_error_not_found">Jockey couldn\'t find &#8220;%1$s&#8221;</string>
+    <string name="message_refresh_library_no_permission">MusicApp не имеет разрешения на чтение вашей музыки</string>
+    <string name="message_play_error_not_found">MusicApp не может найти &#8220;%1$s&#8221;</string>
     <string name="message_play_error_io_exception">&#8220;%1$s&#8221; couldn\'t be played</string>
-    <string name="error_hint_duplicate_playlist">Enter a unique playlist name</string>
-    <string name="error_hint_empty_playlist">Enter a playlist name</string>
+    <string name="error_hint_duplicate_playlist">Пожалуйста введите уникальное имя плейлиста</string>
+    <string name="error_hint_empty_playlist">Введите имя плейлиста</string>
 
     <!-- Formatted Messages -->
     <string name="message_added_song">Added &#8220;%1$s&#8221; to &#8220;%2$s&#8221;</string>

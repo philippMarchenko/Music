@@ -72,7 +72,7 @@ public class LibraryViewModel extends BaseViewModel {
 
     @Bindable
     public boolean isFabVisible() {
-        return mPage == 0;
+        return mPage == 4;
     }
 
     @Bindable

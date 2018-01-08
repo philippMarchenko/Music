@@ -9,11 +9,18 @@ public class Folder {
     private String folder_name;
     private List<String> includedList;
     private int count_songs;
+    private int id;
 
-    public Folder(String folder_dir, String folder_name,int count_songs) {
+
+    public Folder(String folder_dir, String folder_name,int count_songs,int id) {
         this.folder_dir = folder_dir;
         this.folder_name = folder_name;
         this.count_songs = count_songs;
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public int getCount_songs() {
