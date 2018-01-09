@@ -95,7 +95,7 @@ public class LibraryFragment extends BaseFragment{
         setupToolbar(mBinding.toolbar);
         setHasOptionsMenu(true);
 
-        materialSearchView = mBinding.searchView;
+       /* materialSearchView = mBinding.searchView;
         materialSearchView.setCursorDrawable(R.drawable.custom_cursor);
         materialSearchView.setBackgroundColor(getResources().getColor(R.color.primary));
 
@@ -146,7 +146,7 @@ public class LibraryFragment extends BaseFragment{
                 materialSearchView.dismissSuggestions();
             }
         });
-
+*/
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -207,7 +207,7 @@ public class LibraryFragment extends BaseFragment{
         fakeSearchView.setOnSearchListener(this);*/
 
         MenuItem item = menu.findItem(R.id.action_search);
-        materialSearchView.setMenuItem(item);
+      //  materialSearchView.setMenuItem(item);
     }
 
 

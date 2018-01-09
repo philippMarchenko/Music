@@ -92,37 +92,5 @@ public class SongSection extends HeterogeneousAdapter.ListSection<Song>
             mBinding.executePendingBindings();
         }
     }
-    /*@Override
-    public Filter getFilter() {
-        return new Filter() {
-            @Override
-            protected FilterResults performFiltering(CharSequence charSequence) {
-                String charString = charSequence.toString();
-                if (charString.isEmpty()) {
-                    setData(songList);
-                } else {
-                    List<Song> filteredList = new ArrayList<>();
-                    for (Song row : songList) {
 
-                        // name match condition. this might differ depending on your requirement
-                        // here we are looking for name or phone number match
-                        if (row.getSongName().toLowerCase().contains(charString.toLowerCase()) || row.getAlbumName().contains(charSequence) || row.getAlbumName().contains(charSequence)) {
-                            filteredList.add(row);
-                        }
-                    }
-
-                    setData(filteredList);
-                }
-
-                FilterResults filterResults = new FilterResults();
-                filterResults.values = getData();
-                return filterResults;
-            }
-
-            @Override
-            protected void publishResults(CharSequence charSequence, FilterResults filterResults) {
-                setData((ArrayList<Song>) filterResults.values);
-            }
-        };
-    }*/
 }

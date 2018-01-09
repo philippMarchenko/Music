@@ -10,6 +10,9 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 
+import com.bumptech.glide.GenericRequestBuilder;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.devphill.music.BR;
 import com.devphill.music.JockeyApplication;
 import com.devphill.music.R;
@@ -130,6 +133,7 @@ public class SongViewModel extends BaseObservable {
 
         notifyPropertyChanged(BR.title);
         notifyPropertyChanged(BR.detail);
+        notifyPropertyChanged(BR.artistImage);
     }
 
     @Bindable
@@ -150,6 +154,11 @@ public class SongViewModel extends BaseObservable {
     public String getDetail() {
         return mContext.getString(R.string.format_compact_song_info,
                 mReference.getArtistName(), mReference.getAlbumName());
+    }
+
+    @Bindable
+    public GenericRequestBuilder getArtistImage() {
+        return Glide.with(mContext).load(mReference.getArtistImageUrl()).centerCrop();
     }
 
     public View.OnClickListener onClickSong() {
