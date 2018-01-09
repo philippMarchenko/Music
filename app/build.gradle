@@ -129,5 +129,6 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.10.3'
 
     compile 'org.cryse.widget:persistentsearchview:1.0.4@aar'
+    compile 'com.github.mancj:MaterialSearchBar:0.7.5'
 
 }

@@ -1,5 +1,6 @@
 package com.devphill.music.ui.library;
 
+import android.animation.Animator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -25,14 +26,18 @@ import com.devphill.music.data.store.PreferenceStore;
 import com.devphill.music.data.store.ThemeStore;
 import com.devphill.music.databinding.FragmentLibraryBinding;
 import com.devphill.music.ui.BaseFragment;
+import com.devphill.music.ui.SampleSuggestionsBuilder;
+import com.devphill.music.ui.SimpleAnimationListener;
 import com.devphill.music.ui.about.AboutActivity;
 import com.devphill.music.ui.library.my_downloads.MyDownloadsFragment;
 import com.devphill.music.ui.library.net_songs.NetSongsFragment;
 import com.devphill.music.ui.settings.SettingsActivity;
 import com.devphill.music.utils.ObjectSerializer;
+import com.mancj.materialsearchbar.MaterialSearchBar;
 
 
 import org.cryse.widget.persistentsearch.PersistentSearchView;
+import org.cryse.widget.persistentsearch.SearchItem;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -52,8 +57,7 @@ public class LibraryFragment extends BaseFragment{
 
     private int currentPage = 1;
 
-    private PersistentSearchView mSearchView;
-    private View mSearchTintView;
+    MaterialSearchBar materialSearchBar;
 
     private ArrayList<String> suggestionList = new ArrayList<String>();
 
@@ -96,6 +100,12 @@ public class LibraryFragment extends BaseFragment{
         suggestionList.add("ewgwqeg");
         suggestionList.add("wgweg");
         suggestionList.add("ewgwegwQWwqeg");
+
+        materialSearchBar = mBinding.searchBar;
+
+
+
+
 
      //   materialSearchBar = mBinding.searchBar;
      /*   materialSearchBar.setHint("Ведите название...");
