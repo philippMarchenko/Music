@@ -9,9 +9,10 @@
             type="com.devphill.music.ui.library.LibraryViewModel"/>
     </data>
 
-    <android.support.design.widget.CoordinatorLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+       >
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/library_refresh_layout"
@@ -45,11 +46,13 @@
             app:fabSize="normal"
             app:layout_behavior="com.devphill.music.view.FABMenu$Behavior"/>
 
+
         <android.support.design.widget.AppBarLayout
             android:id="@+id/library_app_bar_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary">
+
             <FrameLayout
                 android:id="@+id/toolbar_container"
                 android:layout_width="match_parent"
@@ -63,12 +66,22 @@
                     app:layout_scrollFlags="scroll|enterAlways|snap"
                     />
 
-                <com.miguelcatalan.materialsearchview.MaterialSearchView
-                    android:id="@+id/search_view"
+                <org.cryse.widget.persistentsearch.PersistentSearchView
+                    android:id="@+id/searchview"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="55dp"
-                   />
+                    android:layout_alignParentTop="true"
+                    android:elevation="4dp"
+                    app:persistentSV_displayMode="menuItem"
+                    app:persistentSV_logoDrawable="@drawable/ic_search_24dp"
+                    app:persistentSV_searchTextColor="?android:textColorPrimary"
+                    app:persistentSV_editTextColor="?android:textColorPrimary"
+                    app:persistentSV_editHintText="Search"
+                    app:persistentSV_editHintTextColor="?android:textColorHint"
+                    app:persistentSV_homeButtonMode="burger"
+                    app:persistentSV_searchCardElevation="2dp"
+                    app:persistentSV_customToolbarHeight="64dp"
+                    android:visibility="gone"/>
             </FrameLayout>
             <android.support.design.widget.TabLayout
                 android:id="@+id/library_tabs"
@@ -81,5 +94,5 @@
                 app:tabTextColor="#bfff" />
 
         </android.support.design.widget.AppBarLayout>
-    </android.support.design.widget.CoordinatorLayout>
+    </RelativeLayout>
 </layout>

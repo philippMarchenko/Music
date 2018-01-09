@@ -2,11 +2,10 @@ package com.devphill.music.ui.library;
 
 import android.content.Context;
 import android.content.Intent;
-import android.database.DataSetObserver;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,10 +16,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 
 import com.devphill.music.JockeyApplication;
 import com.devphill.music.R;
@@ -33,11 +28,13 @@ import com.devphill.music.ui.BaseFragment;
 import com.devphill.music.ui.about.AboutActivity;
 import com.devphill.music.ui.library.my_downloads.MyDownloadsFragment;
 import com.devphill.music.ui.library.net_songs.NetSongsFragment;
-import com.devphill.music.ui.search.SearchActivity;
 import com.devphill.music.ui.settings.SettingsActivity;
-import com.github.leonardoxh.fakesearchview.FakeSearchView;
-import com.miguelcatalan.materialsearchview.MaterialSearchView;
+import com.devphill.music.utils.ObjectSerializer;
 
+
+import org.cryse.widget.persistentsearch.PersistentSearchView;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,9 +52,10 @@ public class LibraryFragment extends BaseFragment{
 
     private int currentPage = 1;
 
-    private MaterialSearchView materialSearchView;
+    private PersistentSearchView mSearchView;
+    private View mSearchTintView;
 
-    private List<String> suggestionList = new ArrayList<>();
+    private ArrayList<String> suggestionList = new ArrayList<String>();
 
     public static LibraryFragment newInstance() {
         return new LibraryFragment();
@@ -95,15 +93,22 @@ public class LibraryFragment extends BaseFragment{
         setupToolbar(mBinding.toolbar);
         setHasOptionsMenu(true);
 
-        materialSearchView = mBinding.searchView;
-        materialSearchView.setCursorDrawable(R.drawable.custom_cursor);
+        suggestionList.add("ewgwqeg");
+        suggestionList.add("wgweg");
+        suggestionList.add("ewgwegwQWwqeg");
+
+     //   materialSearchBar = mBinding.searchBar;
+     /*   materialSearchBar.setHint("Ведите название...");
+        materialSearchBar.setSpeechMode(true);
+        materialSearchBar.setElevation(0);*/
+
+
+      /*  materialSearchView = mBinding.searchView;
         materialSearchView.setBackgroundColor(getResources().getColor(R.color.primary));
 
         materialSearchView.setHint("Ведите название...");
 
-        suggestionList.add("ewgwqeg");
-        suggestionList.add("wgweg");
-        suggestionList.add("ewgwegwQWwqeg");
+
 
         String[]  suggestionArr = new String[suggestionList.size()];
         suggestionArr = suggestionList.toArray(suggestionArr);
@@ -123,7 +128,6 @@ public class LibraryFragment extends BaseFragment{
             @Override
             public boolean onQueryTextSubmit(String query) {
                 sendDataToFragment(query);
-
                 suggestionList.add(query);
                 return false;
             }
@@ -145,7 +149,10 @@ public class LibraryFragment extends BaseFragment{
             public void onSearchViewClosed() {
                 materialSearchView.dismissSuggestions();
             }
-        });
+        });*/
+
+
+
 
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -202,23 +209,28 @@ public class LibraryFragment extends BaseFragment{
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.activity_library, menu);
 
-     /*   MenuItem menuItem = menu.findItem(R.id.menu_library_search);
-        FakeSearchView fakeSearchView = (FakeSearchView) MenuItemCompat.getActionView(menuItem);
+      //  View  menuItem = (View) menu.findItem(R.id.menu_library_search);
+      //  View menuItemView = findViewById(R.id.action_search);
+
+      //  mSearchView.openSearch(menuItemView);
+
+       /* FakeSearchView fakeSearchView = (FakeSearchView) MenuItemCompat.getActionView(menuItem);
         fakeSearchView.setOnSearchListener(this);*/
 
-        MenuItem item = menu.findItem(R.id.action_search);
-        materialSearchView.setMenuItem(item);
+      //  MenuItem item = menu.findItem(R.id.action_search);
+      //  materialSearchView.setMenuItem(item);
     }
 
 
-   @Override
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.menu_library_settings:
                 startActivity(SettingsActivity.newIntent(getContext()));
                 return true;
-            case R.id.menu_library_search:
+            case R.id.action_search:
              //   startActivity(SearchActivity.newIntent(getContext()));
+                mSearchView.openSearch();
                 return true;
             case R.id.menu_library_about:
                 startActivity(AboutActivity.newIntent(getContext()));
@@ -229,7 +241,33 @@ public class LibraryFragment extends BaseFragment{
     }
 
 
+    private void restoreSuggestionList () {
 
+        // load list from preference
+        SharedPreferences prefs = getContext().getSharedPreferences("suggestionList", Context.MODE_PRIVATE);
+        ArrayList<String> strings = new ArrayList<String>();
+        try {
+            suggestionList = (ArrayList<String>) ObjectSerializer.deserialize(prefs.getString("LIST", ObjectSerializer.serialize(new ArrayList<String>())));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+
+
+        SharedPreferences prefs = getContext().getSharedPreferences("suggestionList", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        try {
+            editor.putString("LIST",ObjectSerializer.serialize(suggestionList));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        editor.commit();
+
+    }
 /*    @Override
     public void onSearch(FakeSearchView fakeSearchView, CharSequence constraint) {
         Log.d("LibraryFragment", "onSearch " + constraint.toString());

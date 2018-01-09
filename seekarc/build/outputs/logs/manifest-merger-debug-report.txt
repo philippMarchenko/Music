@@ -1,41 +1,41 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\studio\Music\seekarc\AndroidManifest.xml:24:1-31:12
-INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml:24:1-31:12
-INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml:24:1-31:12
-INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml:24:1-31:12
-INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml:24:1-31:12
-INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml:24:1-31:12
-INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml:24:1-31:12
+ADDED from D:\android\Music\seekarc\AndroidManifest.xml:24:1-31:12
+INJECTED from D:\android\Music\seekarc\AndroidManifest.xml:24:1-31:12
+INJECTED from D:\android\Music\seekarc\AndroidManifest.xml:24:1-31:12
+INJECTED from D:\android\Music\seekarc\AndroidManifest.xml:24:1-31:12
+INJECTED from D:\android\Music\seekarc\AndroidManifest.xml:24:1-31:12
+INJECTED from D:\android\Music\seekarc\AndroidManifest.xml:24:1-31:12
+INJECTED from D:\android\Music\seekarc\AndroidManifest.xml:24:1-31:12
 	package
-		ADDED from D:\studio\Music\seekarc\AndroidManifest.xml:25:5-38
-		INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml
-		INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml
+		ADDED from D:\android\Music\seekarc\AndroidManifest.xml:25:5-38
+		INJECTED from D:\android\Music\seekarc\AndroidManifest.xml
+		INJECTED from D:\android\Music\seekarc\AndroidManifest.xml
 	android:versionName
-		INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml
-		ADDED from D:\studio\Music\seekarc\AndroidManifest.xml:24:1-31:12
-		INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml
+		INJECTED from D:\android\Music\seekarc\AndroidManifest.xml
+		ADDED from D:\android\Music\seekarc\AndroidManifest.xml:24:1-31:12
+		INJECTED from D:\android\Music\seekarc\AndroidManifest.xml
 	android:versionCode
-		INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml
-		ADDED from D:\studio\Music\seekarc\AndroidManifest.xml:24:1-31:12
-		INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml
+		INJECTED from D:\android\Music\seekarc\AndroidManifest.xml
+		ADDED from D:\android\Music\seekarc\AndroidManifest.xml:24:1-31:12
+		INJECTED from D:\android\Music\seekarc\AndroidManifest.xml
 	xmlns:android
-		ADDED from D:\studio\Music\seekarc\AndroidManifest.xml:24:11-69
+		ADDED from D:\android\Music\seekarc\AndroidManifest.xml:24:11-69
 application
-ADDED from D:\studio\Music\seekarc\AndroidManifest.xml:27:5-29:19
+ADDED from D:\android\Music\seekarc\AndroidManifest.xml:27:5-29:19
 	android:label
-		ADDED from D:\studio\Music\seekarc\AndroidManifest.xml:28:9-41
+		ADDED from D:\android\Music\seekarc\AndroidManifest.xml:28:9-41
 uses-sdk
-INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml
-INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml
-INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml
-INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml
+INJECTED from D:\android\Music\seekarc\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\android\Music\seekarc\AndroidManifest.xml
+INJECTED from D:\android\Music\seekarc\AndroidManifest.xml
+INJECTED from D:\android\Music\seekarc\AndroidManifest.xml
+INJECTED from D:\android\Music\seekarc\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml
-		ADDED from D:\studio\Music\seekarc\AndroidManifest.xml
-		INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml
+		INJECTED from D:\android\Music\seekarc\AndroidManifest.xml
+		ADDED from D:\android\Music\seekarc\AndroidManifest.xml
+		INJECTED from D:\android\Music\seekarc\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml
-		ADDED from D:\studio\Music\seekarc\AndroidManifest.xml
-		INJECTED from D:\studio\Music\seekarc\AndroidManifest.xml
+		INJECTED from D:\android\Music\seekarc\AndroidManifest.xml
+		ADDED from D:\android\Music\seekarc\AndroidManifest.xml
+		INJECTED from D:\android\Music\seekarc\AndroidManifest.xml

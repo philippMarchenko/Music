@@ -200,4 +200,5 @@
         <item name="android:textSize">@dimen/grid_text_detail_size</item>
     </style>
 
+
 </resources>
