@@ -128,8 +128,7 @@ dependencies {
 
     implementation 'org.jsoup:jsoup:1.10.3'
 
-    implementation 'com.github.leonardoxh:fake-search-view:0.3.1'
-
-    implementation 'com.miguelcatalan:materialsearchview:1.4.0'
+    compile 'org.cryse.widget:persistentsearchview:1.0.4@aar'
+    compile 'com.github.mancj:MaterialSearchBar:0.7.5'
 
 }

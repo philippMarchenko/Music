@@ -1,20 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\studio\\Music\\seekarc\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-v16\\values-v16.xml",
+            "outputFile": "D:\\android\\Music\\seekarc\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v16\\values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\3b385e1f05241d469c2740d6c3d9fa9c\\res\\values-v16\\values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\da5ba553261dfd4410f406aefca197c5\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\e003b8cd8cc5f00f668072c0d12c7a02\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -30,25 +20,25 @@
                         "endLines": "6",
                         "endColumns": "12",
                         "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\0b48ac782320500d45ba064174c46314\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
                     }
                 }
             ]
         },
         {
-            "outputFile": "D:\\studio\\Music\\seekarc\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-v16\\values-v16.xml",
+            "outputFile": "D:\\android\\Music\\seekarc\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-v16\\values-v16.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\3b385e1f05241d469c2740d6c3d9fa9c\\res\\values-v16\\values-v16.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "65",
-                        "endOffsets": "116"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\da5ba553261dfd4410f406aefca197c5\\res\\values-v16\\values-v16.xml",
+                    "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\e003b8cd8cc5f00f668072c0d12c7a02\\res\\values-v16\\values-v16.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -64,6 +54,16 @@
                         "endLines": "6",
                         "endColumns": "12",
                         "endOffsets": "289"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\0b48ac782320500d45ba064174c46314\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
                     }
                 }
             ]

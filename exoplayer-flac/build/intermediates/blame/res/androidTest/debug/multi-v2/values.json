@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
+            "outputFile": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\26a924d7a30fb708df60fa40e3667fa8\\res\\values\\values.xml",
+                    "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,11,12,13,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,50,54,58,62,66,70",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -17,10 +17,10 @@
             ]
         },
         {
-            "outputFile": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values\\values.xml",
+            "outputFile": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\values\\values.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\26a924d7a30fb708df60fa40e3667fa8\\res\\values\\values.xml",
+                    "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,11,12,13,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,50,54,58,62,66,70",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
