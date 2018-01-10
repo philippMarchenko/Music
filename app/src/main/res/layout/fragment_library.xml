@@ -9,7 +9,7 @@
             type="com.devphill.music.ui.library.LibraryViewModel"/>
     </data>
 
-    <android.support.design.widget.CoordinatorLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -17,18 +17,19 @@
             android:id="@+id/library_refresh_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:enabled="@{viewModel.libraryRefreshing}"
-            app:refreshing="@{viewModel.libraryRefreshing}"
+            android:layout_below="@+id/toolbar_container"
             app:colorSchemeColors="@{viewModel.refreshIndicatorColors}"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+            app:enabled="@{viewModel.libraryRefreshing}"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            app:refreshing="@{viewModel.libraryRefreshing}">
 
             <android.support.v4.view.ViewPager
                 android:id="@+id/library_pager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:saveEnabled="true"
-                app:page="@={viewModel.page}"
-                app:adapter="@{viewModel.pagerAdapter}"/>
+                app:adapter="@{viewModel.pagerAdapter}"
+                app:page="@={viewModel.page}" />
 
         </android.support.v4.widget.SwipeRefreshLayout>
 
@@ -45,35 +46,34 @@
             app:fabSize="normal"
             app:layout_behavior="com.devphill.music.view.FABMenu$Behavior"/>
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/library_app_bar_layout"
+        <FrameLayout
+            android:id="@+id/toolbar_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary">
-            <FrameLayout
-                android:id="@+id/toolbar_container"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            android:background="@color/primary"
+            android:elevation="0dp"
+           >
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                    app:layout_scrollFlags="scroll|enterAlways|snap"
-                    />
-
-            </FrameLayout>
             <android.support.design.widget.TabLayout
                 android:id="@+id/library_tabs"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="56dp"
                 android:layoutDirection="ltr"
                 app:tabIndicatorColor="?attr/colorAccent"
                 app:tabMode="scrollable"
                 app:tabSelectedTextColor="#fff"
                 app:tabTextColor="#bfff" />
 
-        </android.support.design.widget.AppBarLayout>
-    </android.support.design.widget.CoordinatorLayout>
+            <com.mancj.materialsearchbar.MaterialSearchBar
+                style="@style/MaterialSearchBarLight"
+                app:mt_hint="Custom hint"
+                app:mt_maxSuggestionsCount="10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/searchBar"
+                android:layout_margin="5dp"/>
+        </FrameLayout>
+
+    </RelativeLayout>
 </layout>

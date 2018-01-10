@@ -6,6 +6,7 @@
       <module fileurl="file://D:\android\Music\.idea\Music.iml" filepath="D:\android\Music\.idea\Music.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/exoplayer-flac/exoplayer-flac.iml" filepath="$PROJECT_DIR$/exoplayer-flac/exoplayer-flac.iml" />
+      <module fileurl="file://$PROJECT_DIR$/librarySearch/librarySearch.iml" filepath="$PROJECT_DIR$/librarySearch/librarySearch.iml" />
       <module fileurl="file://$PROJECT_DIR$/seekarc/seekarc.iml" filepath="$PROJECT_DIR$/seekarc/seekarc.iml" />
     </modules>
   </component>
