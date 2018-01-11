@@ -4,15 +4,20 @@ import android.app.Activity;
 import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.Bindable;
+import android.databinding.ObservableField;
+import android.graphics.Bitmap;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.PopupMenu;
-import android.util.Log;
+
 import android.view.Gravity;
 import android.view.View;
 
 import com.bumptech.glide.GenericRequestBuilder;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.devphill.music.BR;
 import com.devphill.music.JockeyApplication;
 import com.devphill.music.R;
@@ -27,6 +32,7 @@ import com.devphill.music.ui.common.playlist.AppendPlaylistDialogFragment;
 import com.devphill.music.ui.library.album.AlbumActivity;
 import com.devphill.music.ui.library.artist.ArtistActivity;
 import com.devphill.music.ui.library.net_songs.Downloader;
+import com.devphill.music.view.ViewUtils;
 import com.trello.rxlifecycle.ActivityEvent;
 import com.trello.rxlifecycle.FragmentEvent;
 import com.trello.rxlifecycle.LifecycleTransformer;
@@ -62,6 +68,8 @@ public class SongViewModel extends BaseObservable {
     private boolean mIsPlaying;
     private Song mReference;
 
+    private final ObservableField<Bitmap> mArtwork;
+
     public SongViewModel(BaseActivity activity, List<Song> songs) {
         this(activity, activity.getSupportFragmentManager(),
                 activity.bindUntilEvent(ActivityEvent.DESTROY), songs);
@@ -80,6 +88,7 @@ public class SongViewModel extends BaseObservable {
         mLifecycleTransformer = lifecycleTransformer;
         mSongList = songs;
 
+        mArtwork = new ObservableField<>();
 
 
 
@@ -131,9 +140,28 @@ public class SongViewModel extends BaseObservable {
                     Timber.e(throwable, "Failed to update playing indicator");
                 });
 
+
+        Glide.with(mContext)
+                .load(mReference.getArtistImageUrl())
+                .asBitmap()
+                .into(new SimpleTarget<Bitmap>() {
+                    @Override
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+
+                        if(resource != null){
+                        //     mArtwork.set(resource);
+                            mArtwork.set(ViewUtils.drawableToBitmap(mContext.getResources().getDrawable(R.drawable.art_default)));
+
+                        }
+                        else{
+                        }
+
+                    }
+                });
+
+
         notifyPropertyChanged(BR.title);
         notifyPropertyChanged(BR.detail);
-        notifyPropertyChanged(BR.artistImage);
     }
 
     @Bindable
@@ -156,9 +184,8 @@ public class SongViewModel extends BaseObservable {
                 mReference.getArtistName(), mReference.getAlbumName());
     }
 
-    @Bindable
-    public GenericRequestBuilder getArtistImage() {
-        return Glide.with(mContext).load(mReference.getArtistImageUrl()).centerCrop();
+    public ObservableField<Bitmap> getArtwork() {
+        return mArtwork;
     }
 
     public View.OnClickListener onClickSong() {
@@ -166,10 +193,10 @@ public class SongViewModel extends BaseObservable {
             mPlayerController.setQueue(mSongList, mIndex);
             mPlayerController.play();
 
-            if (mPrefStore.openNowPlayingOnNewQueue() && mActivity instanceof BaseLibraryActivity) {
+         /*   if (mPrefStore.openNowPlayingOnNewQueue() && mActivity instanceof BaseLibraryActivity) {
                 ((BaseLibraryActivity) mActivity).expandBottomSheet();
             }
-
+*/
 
 
         };

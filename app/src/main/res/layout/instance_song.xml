@@ -18,12 +18,11 @@
             android:id="@+id/artist_art"
             android:layout_width="72dp"
             android:layout_height="72dp"
-            android:src="@{viewModel.artistImage}"
             app:layout_constraintHorizontal_bias="0.003"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/art_default" />
+            app:bitmap="@{viewModel.artwork}" />
 
         <TextView
             android:id="@+id/song_name"
