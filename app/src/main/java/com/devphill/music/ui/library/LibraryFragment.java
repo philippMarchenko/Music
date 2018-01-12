@@ -89,11 +89,6 @@ public class LibraryFragment extends BaseFragment implements MaterialSearchBar.O
        // setupToolbar(mBinding.toolbar);
         setHasOptionsMenu(true);
 
-
-        suggestionList.add("ewgwqeg");
-        suggestionList.add("wgweg");
-        suggestionList.add("ewgwegwQWwqeg");
-
         materialSearchBar = mBinding.searchBar;
         materialSearchBar.setCardViewElevation(10);
 
@@ -206,12 +201,7 @@ public class LibraryFragment extends BaseFragment implements MaterialSearchBar.O
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.activity_library, menu);
 
-     /*   MenuItem menuItem = menu.findItem(R.id.menu_library_search);
-        FakeSearchView fakeSearchView = (FakeSearchView) MenuItemCompat.getActionView(menuItem);
-        fakeSearchView.setOnSearchListener(this);*/
-
         MenuItem item = menu.findItem(R.id.action_search);
-      //  materialSearchView.setMenuItem(item);
     }
 
 
@@ -244,24 +234,17 @@ public class LibraryFragment extends BaseFragment implements MaterialSearchBar.O
 
     @Override
     public void onSearchStateChanged(boolean enabled) {
-        if(enabled){                                //если поиск в активном состоянии
-
-            materialSearchBar.showSuggestionsList();//покажем подсказки поиска
-
-        }
-        else {
-
-            materialSearchBar.hideSuggestionsList();//иначе закроем
-        }
     }
 
     @Override
     public void onSearchConfirmed(CharSequence text) {
+        sendDataToFragment(text.toString());
 
     }
 
     @Override
     public void onTextChanged(CharSequence text) {
+        sendDataToFragment(text.toString());
 
     }
 

@@ -13,6 +13,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.BaseTarget;
+import com.bumptech.glide.request.target.SizeReadyCallback;
 import com.devphill.music.model.Song;
 
 import java.util.UUID;
@@ -119,7 +123,7 @@ public final class Util {
     }
 
     public static Bitmap fetchFullArt(Context context, Song song) {
-        if (song == null) {
+     /*   if (song == null) {
             return null;
         }
 
@@ -133,9 +137,11 @@ public final class Util {
             }
         } catch (RuntimeException e) {
             Timber.e(e, "Failed to load full song artwork");
-        } catch (OutOfMemoryError e) {
-            Timber.e(e, "Unable to allocate space on the heap for full song artwork");
-        }
+        } catch (OutOfMemoryError
+
+*/
+
+
 
         return null;
     }

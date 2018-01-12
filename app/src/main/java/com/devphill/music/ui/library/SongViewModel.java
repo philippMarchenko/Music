@@ -155,7 +155,6 @@ public class SongViewModel extends BaseObservable {
                         }
                         else{
                         }
-
                     }
                 });
 
