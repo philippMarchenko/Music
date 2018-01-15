@@ -19,9 +19,10 @@ import android.widget.Toast;
 import com.devphill.music.data.store.MediaStoreUtil;
 import com.devphill.music.data.store.SharedPreferenceStore;
 import com.devphill.music.model.Constants;
+import com.devphill.music.model.SongDetail;
 import com.devphill.music.player.PlayerController;
 import com.devphill.music.player.ServicePlayerController;
-import com.devphill.music.ui.library.ParserPagePopularEP;
+import com.devphill.music.ui.library.SongFragment;
 import com.marverenic.adapter.HeterogeneousAdapter;
 import com.devphill.music.R;
 import com.devphill.music.ui.common.ShuffleAllSection;
@@ -144,14 +145,14 @@ public class NetSongsFragment extends BaseFragment {
             progressBar.setVisibility(View.INVISIBLE);
         }
         else {
-            listSong(keywordsSearch);
+            listSong("элджей");
         }
 
 
         Log.d(LOG_TAG,"onCreateView");
 
 
-    //    getPopularList();
+
 
         return view;
     }
@@ -169,6 +170,13 @@ public class NetSongsFragment extends BaseFragment {
         netSongsAdapter.notifyDataSetChanged();
         Log.d(LOG_TAG,"onPause");
 
+    }
+
+    private void startDetailActivity(String songUrl){
+
+        Intent myIntent = new Intent(getContext(),SongDetailActivity.class);
+        myIntent.putExtra("songUrl", songUrl); //Optional parameters
+        startActivity(myIntent);
     }
 
     private void initOnClickSongListener(){
@@ -221,6 +229,12 @@ public class NetSongsFragment extends BaseFragment {
                 mPlayerController.setQueue(mSongs, position);
                 mPlayerController.play();
                 playingLastPosition = position;
+            }
+
+            @Override
+            public void onClickInfo(int position) {
+
+                startDetailActivity(mSongs.get(position).getTrack_info_url());
             }
         });
 
@@ -279,50 +293,6 @@ public class NetSongsFragment extends BaseFragment {
             }
         };
         parserPageZFFM.getTrackList(Constants.ZF_FM, keywords).subscribe(observer);
-    }
-
-    public void getPopularList (){
-
-        ParserPagePopularEP parserPagePopularEP = new ParserPagePopularEP();
-
-        Observer<List> observer = new Observer<List>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-            }
-
-            @Override
-            public void onNext(List value) {
-
-                List<Song> list = value;
-
-                for(int i = 0; i < list.size(); i++){
-                    Log.d(LOG_TAG, "artist " + list.get(i).getArtistName());
-                    Log.d(LOG_TAG, "song " + list.get(i).getSongName());
-
-                    Log.d(LOG_TAG, "location " + list.get(i).getLocation());
-
-
-                }
-
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.e("RxJavaX", "onError: ");
-            }
-
-            @Override
-            public void onComplete() {
-                //     numberOfPages = parserPageZFFM.getNumberOfItems()/50;
-                //     int numberOfPages1 =  parserPageZFFM.getNumberOfItems()%50;
-                //     if (numberOfPages1 != 0){ numberOfPages++;}
-                //               progressBar.setVisibility(ProgressBar.INVISIBLE);
-                //    Log.e("RxJavaX", "onComplete: All Done!");
-            }
-        };
-//Create our subscription//
-        parserPagePopularEP.getTrackList("http://www.europaplus.ru/index.php?go=Chart40", "").subscribe(observer);
-
     }
 
     @Override

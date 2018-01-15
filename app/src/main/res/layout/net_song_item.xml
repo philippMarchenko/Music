@@ -29,12 +29,23 @@
         android:id="@+id/layout">
 
         <ImageView
+            android:id="@+id/info"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="8dp"
+            android:src="@drawable/info"
+            android:tint="?attr/colorAccent"
+            tools:visibility="visible" />
+
+        <ImageView
             android:id="@+id/playingIndicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="8dp"
+            android:layout_alignTop="@+id/relativeLayout"
             android:layout_toLeftOf="@+id/download_button"
+            android:layout_toStartOf="@+id/download_button"
             android:padding="8dp"
             android:src="@drawable/ic_play_circle_fill_24dp"
             android:tint="?attr/colorAccent"
@@ -45,9 +56,9 @@
             android:id="@+id/download_button"
             android:layout_width="42dp"
             android:layout_height="42dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentRight="false"
             android:layout_centerVertical="true"
-            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@+id/info"
             android:background="?selectableItemBackground"
             android:clickable="true"
             app:srcCompat="@drawable/download" />
@@ -57,7 +68,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="false"
             android:layout_centerVertical="true"
-            android:layout_toLeftOf="@+id/playingIndicator">
+            android:layout_toLeftOf="@+id/playingIndicator"
+            android:id="@+id/relativeLayout">
 
             <TextView
                 android:id="@+id/artist_name"

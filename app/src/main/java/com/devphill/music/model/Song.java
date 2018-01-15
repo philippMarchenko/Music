@@ -67,6 +67,15 @@ public class Song implements Parcelable, Comparable<Song> {
     protected int downloadProgress;
     protected boolean isPlaying;
     protected String artistImageUrl;
+    protected String track_info_url;
+
+    public String getTrack_info_url() {
+        return track_info_url;
+    }
+
+    public void setTrack_info_url(String track_info_url) {
+        this.track_info_url = track_info_url;
+    }
 
     public String getArtistImageUrl() {
         return artistImageUrl;

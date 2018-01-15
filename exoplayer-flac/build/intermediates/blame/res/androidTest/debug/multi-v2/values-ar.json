@@ -16,6 +16,36 @@
             ]
         },
         {
+            "outputFile": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-ar\\values-ar.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\26a924d7a30fb708df60fa40e3667fa8\\res\\values-ar\\values-ar.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,133,214,286,352,437,505",
+                        "endColumns": "77,80,71,65,84,67,65",
+                        "endOffsets": "128,209,281,347,432,500,566"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-ar\\values-ar.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\26a924d7a30fb708df60fa40e3667fa8\\res\\values-ar\\values-ar.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,133,214,286,352,437,505",
+                        "endColumns": "77,80,71,65,84,67,65",
+                        "endOffsets": "128,209,281,347,432,500,566"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-ar\\values-ar.xml",
             "map": [
                 {

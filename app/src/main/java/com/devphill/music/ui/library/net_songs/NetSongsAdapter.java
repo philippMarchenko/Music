@@ -47,7 +47,7 @@ public class NetSongsAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         View view;
         view = LayoutInflater.from(parent.getContext()).inflate(R.layout.net_song_item, parent, false);
-        return new NetSongViewHolder(view,mContext,myActivity);
+        return new NetSongViewHolder(view);
     }
 
     @Override
@@ -72,6 +72,10 @@ public class NetSongsAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHold
             onClickListener.onSongClick(position);
         });
 
+
+        netSongViewHolder.info.setOnClickListener(v -> {
+            onClickListener.onClickInfo(position);
+        });
 
         if(song.getDownloadStatus() == Song.SONG_DOWNLOADING){
             netSongViewHolder.download_button.setVisibility(View.INVISIBLE);
@@ -112,16 +116,17 @@ public class NetSongsAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         private TextView song_name,artist_name;
         private View layout;
-        private ImageView playingIndicator;
+        private ImageView playingIndicator,info;
         private ImageButton download_button;
         private ProgressBar progressDownload;
 
-        public NetSongViewHolder(View v,Context context,Activity activity) {
+        public NetSongViewHolder(View v) {
             super(v);
             this.song_name =  v.findViewById(R.id.song_name);
             this.artist_name =  v.findViewById(R.id.artist_name);
             this.layout = v.findViewById(R.id.layout);
             this.playingIndicator =  v.findViewById(R.id.playingIndicator);
+            this.info =  v.findViewById(R.id.info);
             this.download_button = v.findViewById(R.id.download_button);
             this.progressDownload = v.findViewById(R.id.progressDownload);
         }
@@ -131,6 +136,8 @@ public class NetSongsAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHold
         void onDownloadClickStart(int position);
         void onDownloadClickStop(int position);
         void onSongClick(int position);
+        void onClickInfo(int position);
+
 
     }
 

@@ -1,10 +1,18 @@
 [
     {
+        "merged": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\exo_playback_control_view.xml",
+        "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\26a924d7a30fb708df60fa40e3667fa8\\res\\layout\\exo_playback_control_view.xml"
+    },
+    {
         "merged": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\exo_simple_player_view.xml",
         "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\layout\\exo_simple_player_view.xml"
     },
     {
         "merged": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\exo_playback_control_view.xml",
         "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\layout\\exo_playback_control_view.xml"
+    },
+    {
+        "merged": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\exo_simple_player_view.xml",
+        "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\26a924d7a30fb708df60fa40e3667fa8\\res\\layout\\exo_simple_player_view.xml"
     }
 ]

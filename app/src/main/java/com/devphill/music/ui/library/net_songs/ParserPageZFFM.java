@@ -108,12 +108,15 @@ public class ParserPageZFFM extends Constants {
                 Element trackTime = searchContainer.select(TRACK_TIME).get(i);
                 Element itemTrackElement = itemTrackElements.get(i);
                 String trackURL = itemTrackElement.absUrl(TRACK_URL);
-                Log.d("ParserPageZFFM", "4" + trackURL);
-   /*             ObjectTrack objectTrack = new ObjectTrack(
-                        trackFullName.text(),
-                        trackTime.text(),
-                        trackURL);
-                */
+                Log.d("ParserPageZFFM", "trackURL " + trackURL);
+
+                Element tracksDescription = searchContainer.select("div [class=\"tracks-description\"]").get(i);
+//                Element tracksInfo = tracksDescription.select("a [class=\"tracks-info\"]").get(i);
+                Element tracksInfo = tracksDescription.child(2);
+                String setTrack_info_url = tracksInfo.attr("href");
+                Log.d("ParserPageZFFM", "setTrack_info_url " + setTrack_info_url);
+
+
                 Uri uri;
                 uri = Uri.parse(trackURL);
 
@@ -132,6 +135,7 @@ public class ParserPageZFFM extends Constants {
                                 .setInLibrary(true)
                                 .build();
 
+                song.setTrack_info_url(setTrack_info_url);
 
                 Log.d("ParserPageZFFM", "10 " + song.toString());
                 objectTrackList.add(song);

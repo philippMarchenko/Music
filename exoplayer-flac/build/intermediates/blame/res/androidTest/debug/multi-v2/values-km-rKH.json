@@ -1,6 +1,21 @@
 {
     "logs": [
         {
+            "outputFile": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-km-rKH\\values-km-rKH.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\26a924d7a30fb708df60fa40e3667fa8\\res\\values-km-rKH\\values-km-rKH.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,136,207,274,339,410,483",
+                        "endColumns": "80,70,66,64,70,72,66",
+                        "endOffsets": "131,202,269,334,405,478,545"
+                    }
+                }
+            ]
+        },
+        {
             "outputFile": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-km-rKH\\values-km-rKH.xml",
             "map": [
                 {
@@ -20,6 +35,21 @@
             "map": [
                 {
                     "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\values-km-rKH\\values-km-rKH.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8",
+                        "startColumns": "4,4,4,4,4,4,4",
+                        "startOffsets": "55,136,207,274,339,410,483",
+                        "endColumns": "80,70,66,64,70,72,66",
+                        "endOffsets": "131,202,269,334,405,478,545"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-km-rKH\\values-km-rKH.xml",
+            "map": [
+                {
+                    "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\26a924d7a30fb708df60fa40e3667fa8\\res\\values-km-rKH\\values-km-rKH.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",

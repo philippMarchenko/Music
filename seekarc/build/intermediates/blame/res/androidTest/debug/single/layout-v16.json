@@ -2,5 +2,9 @@
     {
         "merged": "D:\\android\\Music\\seekarc\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v16\\notification_template_custom_big.xml",
         "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\0b48ac782320500d45ba064174c46314\\res\\layout-v16\\notification_template_custom_big.xml"
+    },
+    {
+        "merged": "D:\\studio\\Music\\seekarc\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout-v16\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\3b385e1f05241d469c2740d6c3d9fa9c\\res\\layout-v16\\notification_template_custom_big.xml"
     }
 ]

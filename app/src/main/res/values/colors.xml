@@ -65,9 +65,9 @@
     <color name="accent_green">#00C853</color>
 
     <!-- Cyan -->
-    <color name="primary">#00838F</color>
-    <color name="primary_dark">#006064</color>
-    <color name="accent">#40C4FF</color>
+    <color name="primary">#1565C0</color>
+    <color name="primary_dark">#0D47A1</color>
+    <color name="accent">#448AFF</color>
 
     <!-- Blue -->
     <color name="primary_blue">#1565C0</color>
