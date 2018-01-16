@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.devphill.music.ui.library.net_songs.SongDetailActivity">
+    tools:context="com.devphill.music.ui.library.net_songs.SongDetailFragment">
 
 
     <RelativeLayout
@@ -53,4 +53,20 @@
         app:layout_constraintTop_toBottomOf="@+id/ll1">
 
     </android.support.v7.widget.RecyclerView>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/background_miniplayer"
+        android:foreground="?attr/selectableItemBackgroundBorderless">
+
+        <fragment
+            android:id="@+id/miniplayer"
+            android:name="com.devphill.music.ui.nowplaying.MiniplayerFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:layout="@layout/fragment_miniplayer" />
+
+    </FrameLayout>
 </RelativeLayout>

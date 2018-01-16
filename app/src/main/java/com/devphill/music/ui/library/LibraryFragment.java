@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -86,6 +87,20 @@ public class LibraryFragment extends BaseFragment implements MaterialSearchBar.O
 
         mBinding.libraryTabs.setupWithViewPager(mBinding.libraryPager);
 
+
+     //   FragmentManager fragmentManager = mBinding.get
+
+        LibraryPagerAdapter libraryPagerAdapter = (LibraryPagerAdapter) mViewModel.getmPagerAdapter();
+        NetSongsFragment  netSongsFragment = (NetSongsFragment) libraryPagerAdapter.getItem(0);
+        netSongsFragment.setOnChangeStateFragment(new NetSongsFragment.OnChangeStateFragment() {
+            @Override
+            public void changeFragment() {
+                libraryPagerAdapter.update(1);
+                libraryPagerAdapter.notifyDataSetChanged();
+                Log.d("LibraryFragment", "changeFragment " );
+
+            }
+        });
        // setupToolbar(mBinding.toolbar);
         setHasOptionsMenu(true);
 
@@ -97,55 +112,7 @@ public class LibraryFragment extends BaseFragment implements MaterialSearchBar.O
         materialSearchBar.setOnSearchActionListener(this);
         materialSearchBar.setSuggstionsClickListener(this);
 
-       /* materialSearchView = mBinding.searchView;
-        materialSearchView.setCursorDrawable(R.drawable.custom_cursor);
-        materialSearchView.setBackgroundColor(getResources().getColor(R.color.primary));
 
-        materialSearchView.setHint("Ведите название...");
-
-
-        String[]  suggestionArr = new String[suggestionList.size()];
-        suggestionArr = suggestionList.toArray(suggestionArr);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                R.layout.suggestion,R.id.textView,
-                suggestionArr);
-
-        materialSearchView.setSuggestions(suggestionList.toArray(new String[0]));
-        materialSearchView.setAdapter(adapter);
-        materialSearchView.setOnItemClickListener((parent, view, position, id) -> {
-            String query = (String) parent.getItemAtPosition(position);
-            materialSearchView.closeSearch();
-        });
-
-        materialSearchView.setOnQueryTextListener(new MaterialSearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                sendDataToFragment(query);
-
-                suggestionList.add(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                sendDataToFragment(newText);
-                return false;
-            }
-        });
-
-        materialSearchView.setOnSearchViewListener(new MaterialSearchView.SearchViewListener() {
-            @Override
-            public void onSearchViewShown() {
-                materialSearchView.showSuggestions();
-            }
-
-            @Override
-            public void onSearchViewClosed() {
-                materialSearchView.dismissSuggestions();
-            }
-        });
-*/
         pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {

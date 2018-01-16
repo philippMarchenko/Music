@@ -29,7 +29,7 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="10dp"
                 android:rotation="90"
-                card_view:srcCompat="@drawable/right" />
+                card_view:srcCompat="@drawable/ic_arrow_left_black_48dp" />
 
             <TextView
                 android:id="@+id/song_name"

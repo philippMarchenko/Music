@@ -5,11 +5,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.util.Log;
+import android.view.ViewGroup;
 
 import com.devphill.music.R;
 import com.devphill.music.ui.library.folders.FoldersFragment;
 import com.devphill.music.ui.library.my_downloads.MyDownloadsFragment;
 import com.devphill.music.ui.library.net_songs.NetSongsFragment;
+import com.devphill.music.ui.library.net_songs.SongDetailFragment;
 import com.devphill.music.ui.nowplaying.GenreFragment;
 
 class LibraryPagerAdapter extends FragmentPagerAdapter {
@@ -24,7 +26,11 @@ class LibraryPagerAdapter extends FragmentPagerAdapter {
     private NetSongsFragment netSongsFragment;
     private FoldersFragment foldersFragment;
     private MyDownloadsFragment myDownloadsFragment;
+    private SongDetailFragment songDetailFragment;
 
+    private Fragment mCurrentFragment;
+
+    private int state = 0;
 
     public LibraryPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
@@ -33,14 +39,48 @@ class LibraryPagerAdapter extends FragmentPagerAdapter {
 
     }
 
+
+    public Fragment getCurrentFragment() {
+        return mCurrentFragment;
+    }
+
+    @Override
+    public void setPrimaryItem(ViewGroup container, int position, Object object) {
+        if (getCurrentFragment() != object) {
+            mCurrentFragment = ((Fragment) object);
+        }
+        super.setPrimaryItem(container, position, object);
+    }
+    public void update(int state) {
+        this.state = state;
+
+    }
+
     @Override
     public Fragment getItem(int position) {
+        Log.d("LibraryPagerAdapter", "getItem " );
+
         switch (position) {
             case 0:
-                if (netSongsFragment == null) {
-                    netSongsFragment = new NetSongsFragment();
+
+                if(state == 0){
+                    Log.d("LibraryPagerAdapter", "state 0 " );
+
+                    if (netSongsFragment == null) {
+                        netSongsFragment = new NetSongsFragment();
+                    }
+                    return netSongsFragment;
                 }
-                return netSongsFragment;
+                else{
+                    Log.d("LibraryPagerAdapter", "state 1" );
+
+                    if (songDetailFragment == null) {
+                        songDetailFragment = new SongDetailFragment();
+                    }
+                    return songDetailFragment;
+                }
+
+
             case 1:
                 if (songFragment == null) {
                     songFragment = new SongFragment();

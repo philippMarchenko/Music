@@ -19,33 +19,24 @@ import android.widget.Toast;
 import com.devphill.music.data.store.MediaStoreUtil;
 import com.devphill.music.data.store.SharedPreferenceStore;
 import com.devphill.music.model.Constants;
-import com.devphill.music.model.SongDetail;
 import com.devphill.music.player.PlayerController;
 import com.devphill.music.player.ServicePlayerController;
-import com.devphill.music.ui.library.SongFragment;
 import com.marverenic.adapter.HeterogeneousAdapter;
 import com.devphill.music.R;
-import com.devphill.music.ui.common.ShuffleAllSection;
 import com.devphill.music.model.Song;
 import com.devphill.music.ui.BaseFragment;
 import com.devphill.music.view.BackgroundDecoration;
 import com.devphill.music.view.DividerDecoration;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
-
-import javax.inject.Inject;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
-import rx.Subscription;
-import timber.log.Timber;
 
 public class NetSongsFragment extends BaseFragment {
 
@@ -72,6 +63,10 @@ public class NetSongsFragment extends BaseFragment {
 
     int progressLast;
     int playingLastPosition;
+
+    public static int state = 0;
+
+    OnChangeStateFragment onChangeStateFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -148,11 +143,7 @@ public class NetSongsFragment extends BaseFragment {
             listSong("элджей");
         }
 
-
         Log.d(LOG_TAG,"onCreateView");
-
-
-
 
         return view;
     }
@@ -174,7 +165,7 @@ public class NetSongsFragment extends BaseFragment {
 
     private void startDetailActivity(String songUrl){
 
-        Intent myIntent = new Intent(getContext(),SongDetailActivity.class);
+        Intent myIntent = new Intent(getContext(),SongDetailFragment.class);
         myIntent.putExtra("songUrl", songUrl); //Optional parameters
         startActivity(myIntent);
     }
@@ -234,7 +225,9 @@ public class NetSongsFragment extends BaseFragment {
             @Override
             public void onClickInfo(int position) {
 
-                startDetailActivity(mSongs.get(position).getTrack_info_url());
+                Log.d(LOG_TAG,"onClickInfo ");
+                state = 1;
+                onChangeStateFragment.changeFragment();
             }
         });
 
@@ -330,4 +323,14 @@ public class NetSongsFragment extends BaseFragment {
         return null;
     }
 
+
+    public interface OnChangeStateFragment{
+        void changeFragment();
+    }
+
+    public void setOnChangeStateFragment(OnChangeStateFragment onChangeStateFragment){
+        this.onChangeStateFragment = onChangeStateFragment;
+
+    }
 }
+

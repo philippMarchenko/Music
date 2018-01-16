@@ -1,23 +1,23 @@
 -- Merging decision tree log ---
 manifest
-ADDED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml:17:1-61
-INJECTED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml:17:1-61
-INJECTED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml:17:1-61
+ADDED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml:17:1-61
+INJECTED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml:17:1-61
+INJECTED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml:17:1-61
 	package
-		ADDED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml:17:11-59
-		INJECTED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml
-		INJECTED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml
+		ADDED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml:17:11-59
+		INJECTED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml
+		INJECTED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml
 uses-sdk
-INJECTED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml
-INJECTED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml
-INJECTED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml
-INJECTED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml
+INJECTED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml
+INJECTED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml
+INJECTED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml
+INJECTED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml
-		ADDED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml
-		INJECTED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml
+		INJECTED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml
+		ADDED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml
+		INJECTED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml
-		ADDED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml
-		INJECTED from D:\android\Music\exoplayer-flac\src\main\AndroidManifest.xml
+		INJECTED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml
+		ADDED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml
+		INJECTED from D:\studio\Music\exoplayer-flac\src\main\AndroidManifest.xml

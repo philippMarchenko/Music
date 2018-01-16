@@ -82,7 +82,7 @@ public class SongDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             super(itemView);
 
 
-            YouTubePlayer.OnInitializedListener onInitializedListener = new YouTubePlayer.OnInitializedListener() {
+       /*     YouTubePlayer.OnInitializedListener onInitializedListener = new YouTubePlayer.OnInitializedListener() {
                 @Override
                 public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
 
@@ -97,7 +97,7 @@ public class SongDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             };
 
             youTubeView = (YouTubePlayerView) itemView.findViewById(R.id.youtube_view);
-            youTubeView.initialize("AIzaSyAW4zFM9keH8D0uDd3YGbysra3Ci8Sn-tM", onInitializedListener);
+            youTubeView.initialize("AIzaSyAW4zFM9keH8D0uDd3YGbysra3Ci8Sn-tM", onInitializedListener);*/
 
             expandableLayout = (ExpandableLayout) itemView.findViewById(R.id.expandable_layout);
 

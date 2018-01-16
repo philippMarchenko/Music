@@ -2,25 +2,30 @@ package com.devphill.music.ui.library.net_songs;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.devphill.music.R;
 import com.devphill.music.model.SongDetail;
+import com.devphill.music.ui.BaseFragment;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
-public class SongDetailActivity extends YouTubeBaseActivity {
+public class SongDetailFragment extends BaseFragment {
 
     private String songUrl;
 
-    private static final String LOG_TAG = "SongDetailActivity";
+    private static final String LOG_TAG = "SongDetailFragment";
 
     ParseSongDetail parseSongDetail;
 
@@ -33,25 +38,25 @@ public class SongDetailActivity extends YouTubeBaseActivity {
     Context context;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_song_detail);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_song_detail, container, false);
 
-        context = this;
+      //  context = this;
 
-        size = findViewById(R.id.size);
-        duration = findViewById(R.id.duration);
-        quality = findViewById(R.id.quality);
+        size = view.findViewById(R.id.size);
+        duration = view.findViewById(R.id.duration);
+        quality = view.findViewById(R.id.quality);
 
-        mRecyclerView = findViewById(R.id.recyclerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView = view.findViewById(R.id.recyclerView);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         mRecyclerView.setLayoutManager(linearLayoutManager);
 
 
-        Bundle extras = getIntent().getExtras();
+       /* Bundle extras = getIntent().getExtras();
         if (extras != null) {
             songUrl = extras.getString("songUrl");
-        }
+        }*/
 
         Log.d(LOG_TAG,"songUrl " + songUrl);
 
@@ -92,5 +97,6 @@ public class SongDetailActivity extends YouTubeBaseActivity {
         parseSongDetail.getSongDetail(songUrl).subscribe(observerSongDetail);
 
         //parseSongDetail.get(songUrl);
+        return view;
     }
 }

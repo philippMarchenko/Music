@@ -26,6 +26,10 @@ public class LibraryViewModel extends BaseViewModel {
     private FragmentManager mFragmentManager;
     private ThemeStore mThemeStore;
 
+    public FragmentPagerAdapter getmPagerAdapter() {
+        return mPagerAdapter;
+    }
+
     private FragmentPagerAdapter mPagerAdapter;
     private boolean mRefreshing;
     private int mPage;
