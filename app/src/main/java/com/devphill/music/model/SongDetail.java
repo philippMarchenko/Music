@@ -2,9 +2,6 @@ package com.devphill.music.model;
 
 import java.util.List;
 
-/**
- * Created by Филипп on 13.01.2018.
- */
 
 public class SongDetail {
 
@@ -12,11 +9,30 @@ public class SongDetail {
     private String duration;
     private String size;
     private String videoUrl;
-    private List<ArtistSong> artistSongList;
+    private List<Song> artistSongList;
+    private String songTitle;
+    private String songArtist;
 
     public SongDetail() {
 
     }
+
+    public String getSongTitle() {
+        return songTitle;
+    }
+
+    public void setSongTitle(String songTitle) {
+        this.songTitle = songTitle;
+    }
+
+    public String getSongArtist() {
+        return songArtist;
+    }
+
+    public void setSongArtist(String songArtist) {
+        this.songArtist = songArtist;
+    }
+
 
     public String getVideoUrl() {
         return videoUrl;
@@ -25,7 +41,6 @@ public class SongDetail {
     public void setVideoUrl(String videoUrl) {
         this.videoUrl = videoUrl;
     }
-
 
     public String getBitRate() {
         return bitRate;
@@ -51,11 +66,11 @@ public class SongDetail {
         this.size = size;
     }
 
-    public List<ArtistSong> getArtistSongList() {
+    public List<Song> getArtistSongList() {
         return artistSongList;
     }
 
-    public void setArtistSongList(List<ArtistSong> artistSongList) {
+    public void setArtistSongList(List<Song> artistSongList) {
         this.artistSongList = artistSongList;
     }
 

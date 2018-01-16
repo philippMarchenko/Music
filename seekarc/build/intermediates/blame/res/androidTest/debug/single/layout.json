@@ -1,11 +1,11 @@
 [
     {
-        "merged": "D:\\android\\Music\\seekarc\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_custom_big.xml",
-        "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\0b48ac782320500d45ba064174c46314\\res\\layout\\notification_template_custom_big.xml"
-    },
-    {
         "merged": "D:\\android\\Music\\seekarc\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_media_cancel_action.xml",
         "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\support-media-compat-26.1.0.aar\\2baef0f534746687b30acc3cf961f5f5\\res\\layout\\notification_media_cancel_action.xml"
+    },
+    {
+        "merged": "D:\\android\\Music\\seekarc\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\support-compat-26.1.0.aar\\0b48ac782320500d45ba064174c46314\\res\\layout\\notification_template_custom_big.xml"
     },
     {
         "merged": "D:\\studio\\Music\\seekarc\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\abc_popup_menu_header_item_layout.xml",

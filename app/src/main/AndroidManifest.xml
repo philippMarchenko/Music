@@ -306,8 +306,8 @@
             </intent-filter>
         </receiver>
 
-        <activity android:name=".ui.library.net_songs.SongDetailActivity">
-                  android:theme="@style/SplashTheme"
+        <activity android:name=".ui.library.net_songs.SongDetailActivity"
+                  android:theme="@style/ThemeDetail">
         </activity>
     </application>
 

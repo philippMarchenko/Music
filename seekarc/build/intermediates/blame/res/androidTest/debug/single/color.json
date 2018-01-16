@@ -4,12 +4,12 @@
         "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\da5ba553261dfd4410f406aefca197c5\\res\\color\\abc_secondary_text_material_light.xml"
     },
     {
-        "merged": "D:\\android\\Music\\seekarc\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_tint_btn_checkable.xml",
-        "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\e003b8cd8cc5f00f668072c0d12c7a02\\res\\color\\abc_tint_btn_checkable.xml"
-    },
-    {
         "merged": "D:\\android\\Music\\seekarc\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_secondary_text_material_dark.xml",
         "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\e003b8cd8cc5f00f668072c0d12c7a02\\res\\color\\abc_secondary_text_material_dark.xml"
+    },
+    {
+        "merged": "D:\\android\\Music\\seekarc\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_tint_btn_checkable.xml",
+        "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-26.1.0.aar\\e003b8cd8cc5f00f668072c0d12c7a02\\res\\color\\abc_tint_btn_checkable.xml"
     },
     {
         "merged": "D:\\studio\\Music\\seekarc\\build\\intermediates\\res\\merged\\androidTest\\debug\\color\\abc_tint_spinner.xml",
