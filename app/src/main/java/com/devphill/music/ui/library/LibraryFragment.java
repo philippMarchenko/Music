@@ -53,7 +53,8 @@ public class LibraryFragment extends BaseFragment implements MaterialSearchBar.O
     private MaterialSearchBar materialSearchBar;
 
     private List<String> suggestionList = new ArrayList<>();
-    private TabLayout tabLayout;
+    LibraryPagerAdapter libraryPagerAdapter;
+
     public static LibraryFragment newInstance() {
         return new LibraryFragment();
     }
@@ -90,12 +91,13 @@ public class LibraryFragment extends BaseFragment implements MaterialSearchBar.O
 
      //   FragmentManager fragmentManager = mBinding.get
 
-        LibraryPagerAdapter libraryPagerAdapter = (LibraryPagerAdapter) mViewModel.getmPagerAdapter();
+        libraryPagerAdapter = (LibraryPagerAdapter) mViewModel.getmPagerAdapter();
+
         NetSongsFragment  netSongsFragment = (NetSongsFragment) libraryPagerAdapter.getItem(0);
         netSongsFragment.setOnChangeStateFragment(new NetSongsFragment.OnChangeStateFragment() {
             @Override
-            public void changeFragment() {
-                libraryPagerAdapter.update(1);
+            public void changeFragment(String songUrl) {
+                libraryPagerAdapter.update(1,songUrl);
                 libraryPagerAdapter.notifyDataSetChanged();
                 Log.d("LibraryFragment", "changeFragment " );
 
@@ -133,6 +135,11 @@ public class LibraryFragment extends BaseFragment implements MaterialSearchBar.O
         });
 
         return mBinding.getRoot();
+    }
+
+    public void updateNetSongsFragment(){
+        libraryPagerAdapter.update(0,"");
+        libraryPagerAdapter.notifyDataSetChanged();
     }
 
     private void sendDataToFragment(String text){
@@ -219,58 +226,4 @@ public class LibraryFragment extends BaseFragment implements MaterialSearchBar.O
     public void onButtonClicked(int buttonCode) {
 
     }
-
-
-
-/*    @Override
-    public void onSearch(FakeSearchView fakeSearchView, CharSequence constraint) {
-        Log.d("LibraryFragment", "onSearch " + constraint.toString());
-
-        Intent intent = null;
-        switch(currentPage){
-            case 0:
-                intent = new Intent(NetSongsFragment.SEARCH_NET_SONGS);
-                break;
-            case 1:
-                intent = new Intent(SongFragment.SEARCH_ALL_SONGS);
-                break;
-            case 2:
-                intent = new Intent(MyDownloadsFragment.SEARCH_MY_DOWNLOADED);
-                break;
-            case 3:
-                break;
-            default:
-                break;
-
-        }
-        intent.putExtra("search", constraint);
-        getContext().sendBroadcast(intent);
-    }
-    @Override
-    public void onSearchHint(FakeSearchView fakeSearchView, CharSequence constraint) {
-        Log.d("LibraryFragment", "onSearchHint " + constraint.toString());
-
-        Intent intent = null;
-        switch(currentPage){
-            case 0:
-                intent = new Intent(NetSongsFragment.SEARCH_NET_SONGS);
-                break;
-            case 1:
-                intent = new Intent(SongFragment.SEARCH_ALL_SONGS);
-                break;
-            case 2:
-                intent = new Intent(MyDownloadsFragment.SEARCH_MY_DOWNLOADED);
-                break;
-            case 3:
-                break;
-            default:
-                break;
-
-        }
-
-        intent.putExtra("search", constraint);
-        getContext().sendBroadcast(intent);
-        fakeSearchView.clearFocus();
-    }*/
-
 }

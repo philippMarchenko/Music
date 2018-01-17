@@ -6,14 +6,17 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomSheetBehavior;
+import android.util.Log;
 import android.view.View;
 
 import com.devphill.music.R;
 import com.devphill.music.databinding.ActivityLibraryBaseWrapperBinding;
+import com.devphill.music.ui.library.LibraryPagerAdapter;
 
 public abstract class BaseLibraryActivity extends SingleFragmentActivity {
 
     private static final String KEY_WAS_NOW_PLAYING_EXPANDED = "NowPlayingPageExpanded";
+    private static final String LOG_TAG = "BaseLibraryActivity";
 
     private ActivityLibraryBaseWrapperBinding mBinding;
     private BaseLibraryActivityViewModel mViewModel;
@@ -56,6 +59,22 @@ public abstract class BaseLibraryActivity extends SingleFragmentActivity {
     }
 
     @Override
+    public void onBackPressed() {
+        BottomSheetBehavior<View> bottomSheet = BottomSheetBehavior.from(mBinding.miniplayerHolder);
+        if (bottomSheet.getState() == BottomSheetBehavior.STATE_EXPANDED) {
+            bottomSheet.setState(BottomSheetBehavior.STATE_COLLAPSED);
+        } else if(LibraryPagerAdapter.state_net_song_fragment == 1){
+            //   mBinding.
+        }
+        else{
+            super.onBackPressed();
+        }
+
+        Log.d(LOG_TAG,"onBackPressed " );
+
+    }
+
+    @Override
     protected void onPause() {
         super.onPause();
         mViewModel.onActivityExitForeground();
@@ -69,15 +88,7 @@ public abstract class BaseLibraryActivity extends SingleFragmentActivity {
         mBinding.executePendingBindings();
     }
 
-    @Override
-    public void onBackPressed() {
-        BottomSheetBehavior<View> bottomSheet = BottomSheetBehavior.from(mBinding.miniplayerHolder);
-        if (bottomSheet.getState() == BottomSheetBehavior.STATE_EXPANDED) {
-            bottomSheet.setState(BottomSheetBehavior.STATE_COLLAPSED);
-        } else {
-            super.onBackPressed();
-        }
-    }
+
 
     @Override
     protected void showSnackbar(String message) {

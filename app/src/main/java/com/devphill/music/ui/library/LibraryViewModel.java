@@ -3,6 +3,7 @@ package com.devphill.music.ui.library;
 import android.databinding.Bindable;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.devphill.music.BR;
 import com.devphill.music.R;
@@ -26,11 +27,11 @@ public class LibraryViewModel extends BaseViewModel {
     private FragmentManager mFragmentManager;
     private ThemeStore mThemeStore;
 
-    public FragmentPagerAdapter getmPagerAdapter() {
+    public FragmentStatePagerAdapter getmPagerAdapter() {
         return mPagerAdapter;
     }
 
-    private FragmentPagerAdapter mPagerAdapter;
+    private FragmentStatePagerAdapter mPagerAdapter;
     private boolean mRefreshing;
     private int mPage;
 
@@ -69,7 +70,7 @@ public class LibraryViewModel extends BaseViewModel {
     }
 
     @Bindable
-    public FragmentPagerAdapter getPagerAdapter() {
+    public FragmentStatePagerAdapter getPagerAdapter() {
         notifyPropertyChanged(BR.page);
         return mPagerAdapter;
     }

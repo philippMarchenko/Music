@@ -1,10 +1,8 @@
 package com.devphill.music.ui.library.net_songs;
 
-import android.app.Activity;
-import android.content.Context;
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.AppCompatActivity;
+
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -16,7 +14,9 @@ import android.widget.TextView;
 import com.devphill.music.R;
 import com.devphill.music.model.SongDetail;
 import com.devphill.music.ui.BaseFragment;
-import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -24,6 +24,7 @@ import io.reactivex.disposables.Disposable;
 public class SongDetailFragment extends BaseFragment {
 
     private String songUrl;
+    private String videoUrl;
 
     private static final String LOG_TAG = "SongDetailFragment";
 
@@ -35,28 +36,41 @@ public class SongDetailFragment extends BaseFragment {
 
     SongDetail mSongDetail;
 
-    Context context;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_song_detail, container, false);
-
-      //  context = this;
+        View view = inflater.inflate(R.layout.fragment_song_detail, container, false);
 
         size = view.findViewById(R.id.size);
         duration = view.findViewById(R.id.duration);
         quality = view.findViewById(R.id.quality);
 
-        mRecyclerView = view.findViewById(R.id.recyclerView);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        mRecyclerView.setLayoutManager(linearLayoutManager);
+       // mRecyclerView = view.findViewById(R.id.recyclerView);
+       // LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+       // mRecyclerView.setLayoutManager(linearLayoutManager);
 
 
-       /* Bundle extras = getIntent().getExtras();
-        if (extras != null) {
-            songUrl = extras.getString("songUrl");
-        }*/
+        songUrl = getArguments().getString("songUrl");
+
+
+        YouTubePlayer.OnInitializedListener onInitializedListener = new YouTubePlayer.OnInitializedListener() {
+            @Override
+            public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
+
+                youTubePlayer.cueVideo(videoUrl.substring(24, 35));
+            }
+
+            @Override
+            public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
+                Log.d(LOG_TAG,"onInitializationFailure ");
+
+            }
+        };
+
+        YouTubePlayerSupportFragment youTubePlayerFragment = YouTubePlayerSupportFragment.newInstance();
+        FragmentTransaction transaction = getChildFragmentManager().beginTransaction();
+        transaction.add(R.id.fl_youtube, youTubePlayerFragment).commit();
+
 
         Log.d(LOG_TAG,"songUrl " + songUrl);
 
@@ -76,10 +90,15 @@ public class SongDetailFragment extends BaseFragment {
                 duration.setText(songDetail.getDuration());
                 quality.setText(songDetail.getBitRate());
 
-                mSongDetail = songDetail;
+                videoUrl = songDetail.getVideoUrl();
 
-                SongDetailAdapter songDetailAdapter = new SongDetailAdapter(context,mSongDetail);
-                mRecyclerView.setAdapter(songDetailAdapter);
+                youTubePlayerFragment.initialize("AIzaSyAW4zFM9keH8D0uDd3YGbysra3Ci8Sn-tM", onInitializedListener);
+
+
+                //  mSongDetail = songDetail;
+
+                //SongDetailAdapter songDetailAdapter = new SongDetailAdapter(getContext(),mSongDetail,getFragmentManager());
+               // mRecyclerView.setAdapter(songDetailAdapter);
 
             }
 

@@ -1,6 +1,7 @@
 package com.devphill.music.ui.library.net_songs;
 
 
+import android.support.v4.app.FragmentManager;
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,6 +16,8 @@ import com.devphill.music.view.BackgroundDecoration;
 import com.devphill.music.view.DividerDecoration;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.google.android.youtube.player.YouTubePlayerSupportFragment;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.silencedut.expandablelayout.ExpandableLayout;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
@@ -30,11 +33,13 @@ public class SongDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     private SongDetail songDetail;
     private Context mContext;
+    private FragmentManager fragmentManager;
 
-
-    public SongDetailAdapter(Context context, SongDetail songDetail) {
+    public SongDetailAdapter(Context context, SongDetail songDetail, FragmentManager fragmentManager) {
         this.mInflater = LayoutInflater.from(context);
         this.songDetail = songDetail;
+        this.fragmentManager = fragmentManager;
+
         mContext = context;
 
         Log.d(LOG_TAG,"getVideoUrl " + songDetail.getVideoUrl());
@@ -82,22 +87,7 @@ public class SongDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
             super(itemView);
 
 
-       /*     YouTubePlayer.OnInitializedListener onInitializedListener = new YouTubePlayer.OnInitializedListener() {
-                @Override
-                public void onInitializationSuccess(YouTubePlayer.Provider provider, YouTubePlayer youTubePlayer, boolean b) {
 
-                    youTubePlayer.cueVideo(songDetail.getVideoUrl().substring(24, 35));
-                }
-
-                @Override
-                public void onInitializationFailure(YouTubePlayer.Provider provider, YouTubeInitializationResult youTubeInitializationResult) {
-                    Log.d(LOG_TAG,"onInitializationFailure ");
-
-                }
-            };
-
-            youTubeView = (YouTubePlayerView) itemView.findViewById(R.id.youtube_view);
-            youTubeView.initialize("AIzaSyAW4zFM9keH8D0uDd3YGbysra3Ci8Sn-tM", onInitializedListener);*/
 
             expandableLayout = (ExpandableLayout) itemView.findViewById(R.id.expandable_layout);
 
@@ -125,7 +115,7 @@ public class SongDetailAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
             mRecyclerView = itemView.findViewById(R.id.library_page_list);
             mRecyclerView.addItemDecoration(new BackgroundDecoration());
-          //  mRecyclerView.addItemDecoration(new DividerDecoration(getContext(), R.id.empty_layout));
+            mRecyclerView.addItemDecoration(new DividerDecoration(mContext, R.id.empty_layout));
 
             LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
             layoutManager.setOrientation(LinearLayoutManager.VERTICAL);

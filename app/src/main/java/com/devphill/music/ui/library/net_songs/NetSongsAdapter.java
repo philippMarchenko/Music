@@ -22,6 +22,7 @@ import com.devphill.music.model.Song;
 import com.devphill.music.ui.library.folders.FolderAdapter;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class NetSongsAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHolder>   implements FastScrollRecyclerView.SectionedAdapter {
@@ -31,15 +32,20 @@ public class NetSongsAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     private static Context mContext;
     private Activity myActivity;
-    private List<Song> mList;
+    private List<Song> mList = new ArrayList<>();
     private OnClickListener onClickListener;
 
 
-    public NetSongsAdapter(Context context, Activity activity, List<Song> list){
+    public NetSongsAdapter(Context context, Activity activity){
 
         mContext = context;
         myActivity = activity;
-        mList = list;
+    //    mList.addAll(list);
+    }
+
+    public void update(List<Song> list){
+        mList.addAll(list);
+        notifyDataSetChanged();
     }
 
     @Override

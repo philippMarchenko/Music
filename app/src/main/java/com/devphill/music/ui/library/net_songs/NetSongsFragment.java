@@ -46,8 +46,8 @@ public class NetSongsFragment extends BaseFragment {
     private NetSongsAdapter netSongsAdapter;
 
 
-    private List<Song> mSongs = new ArrayList<>();
-    private List<Song> downloadedSongsList = new ArrayList<>();
+    private List<Song> mSongs;
+    private List<Song> downloadedSongsList;
 
     private String keywordsSearch;
 
@@ -73,6 +73,9 @@ public class NetSongsFragment extends BaseFragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_library_page, container, false);
+
+        mSongs = new ArrayList<>();
+        downloadedSongsList = new ArrayList<>();
 
         mPlayerController = new ServicePlayerController(getContext(), new SharedPreferenceStore(getContext()));
 
@@ -110,12 +113,13 @@ public class NetSongsFragment extends BaseFragment {
                 }
         );
 
-        netSongsAdapter = new NetSongsAdapter(getContext(),getActivity(),mSongs);
+        netSongsAdapter = new NetSongsAdapter(getContext(),getActivity());
         mRecyclerView.setAdapter(netSongsAdapter);
 
         br = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
+                Log.d(LOG_TAG,"onReceive search");
 
                 mSongs.clear();
                 netSongsAdapter.notifyDataSetChanged();
@@ -157,17 +161,16 @@ public class NetSongsFragment extends BaseFragment {
     @Override
     public void onPause() {
         super.onPause();
-        mSongs.clear();
-        netSongsAdapter.notifyDataSetChanged();
+        try{
+            mSongs.clear();
+            netSongsAdapter.notifyDataSetChanged();
+        }
+        catch (Exception e){
+
+        }
+
         Log.d(LOG_TAG,"onPause");
 
-    }
-
-    private void startDetailActivity(String songUrl){
-
-        Intent myIntent = new Intent(getContext(),SongDetailFragment.class);
-        myIntent.putExtra("songUrl", songUrl); //Optional parameters
-        startActivity(myIntent);
     }
 
     private void initOnClickSongListener(){
@@ -227,7 +230,7 @@ public class NetSongsFragment extends BaseFragment {
 
                 Log.d(LOG_TAG,"onClickInfo ");
                 state = 1;
-                onChangeStateFragment.changeFragment();
+                onChangeStateFragment.changeFragment(mSongs.get(position).getTrack_info_url());
             }
         });
 
@@ -246,7 +249,10 @@ public class NetSongsFragment extends BaseFragment {
             public void onNext(List value) {
 
                 try{
+                    mSongs.clear();
                     mSongs.addAll(value);
+
+                    netSongsAdapter.update(value);
                     Log.d(LOG_TAG, "onNext mSongs size " + mSongs.size());
                     Log.d(LOG_TAG, "numberOfPages " + numberOfPages);
 
@@ -262,10 +268,10 @@ public class NetSongsFragment extends BaseFragment {
                         }
                     }
 
-                    netSongsAdapter.notifyDataSetChanged();
                     Log.d(LOG_TAG, "onNext: size " + value.size());
                 }
                 catch (Exception e){
+                    Log.d(LOG_TAG, "Ну удалось разобрать ответ " + e.getMessage());
 
                 }
 
@@ -325,7 +331,7 @@ public class NetSongsFragment extends BaseFragment {
 
 
     public interface OnChangeStateFragment{
-        void changeFragment();
+        void changeFragment(String songUrl);
     }
 
     public void setOnChangeStateFragment(OnChangeStateFragment onChangeStateFragment){

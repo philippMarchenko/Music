@@ -1,9 +1,11 @@
 package com.devphill.music.ui.library;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 import android.util.Log;
 import android.view.ViewGroup;
 
@@ -14,7 +16,7 @@ import com.devphill.music.ui.library.net_songs.NetSongsFragment;
 import com.devphill.music.ui.library.net_songs.SongDetailFragment;
 import com.devphill.music.ui.nowplaying.GenreFragment;
 
-class LibraryPagerAdapter extends FragmentPagerAdapter {
+public class LibraryPagerAdapter extends FragmentStatePagerAdapter {
 
     private Context mContext;
 
@@ -30,7 +32,9 @@ class LibraryPagerAdapter extends FragmentPagerAdapter {
 
     private Fragment mCurrentFragment;
 
-    private int state = 0;
+    public static int state_net_song_fragment= 0;
+
+    private  String songUrl;
 
     public LibraryPagerAdapter(Context context, FragmentManager fm) {
         super(fm);
@@ -51,9 +55,21 @@ class LibraryPagerAdapter extends FragmentPagerAdapter {
         }
         super.setPrimaryItem(container, position, object);
     }
-    public void update(int state) {
-        this.state = state;
 
+    public void update(int state,String songUrl) {
+        this.state_net_song_fragment = state;
+        this.songUrl = songUrl;
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemPosition(Object item) {
+
+     //   if (state_net_song_fragment == 0) {
+      //      return POSITION_UNCHANGED;  //если переменная состояния указывает на фрагмент NetSongsFragment,то адаптер не обновится
+       // } else {
+            return POSITION_NONE;       //иначе адаптер обновится
+      //  }
     }
 
     @Override
@@ -63,8 +79,8 @@ class LibraryPagerAdapter extends FragmentPagerAdapter {
         switch (position) {
             case 0:
 
-                if(state == 0){
-                    Log.d("LibraryPagerAdapter", "state 0 " );
+                if(state_net_song_fragment == 0){
+                    Log.d("LibraryPagerAdapter", "state_net_song_fragment "  + state_net_song_fragment);
 
                     if (netSongsFragment == null) {
                         netSongsFragment = new NetSongsFragment();
@@ -72,10 +88,14 @@ class LibraryPagerAdapter extends FragmentPagerAdapter {
                     return netSongsFragment;
                 }
                 else{
-                    Log.d("LibraryPagerAdapter", "state 1" );
+                    Log.d("LibraryPagerAdapter", "state_net_song_fragment "  + state_net_song_fragment);
 
                     if (songDetailFragment == null) {
                         songDetailFragment = new SongDetailFragment();
+                        Bundle bundle = new Bundle();
+                        bundle.putString("songUrl",songUrl);
+                        songDetailFragment.setArguments(bundle);
+
                     }
                     return songDetailFragment;
                 }

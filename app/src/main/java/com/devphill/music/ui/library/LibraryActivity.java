@@ -4,7 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v4.app.Fragment;
+import android.util.Log;
+import android.view.View;
 
 import com.devphill.music.JockeyApplication;
 import com.devphill.music.R;
@@ -25,8 +28,11 @@ import timber.log.Timber;
 public class LibraryActivity extends BaseLibraryActivity {
 
     private static final String ACTION_SHOW_NOW_PLAYING_PAGE = "LibraryActivity.ShowNowPlayingPage";
+    private static final String LOG_TAG = "LibraryActivity";
 
     @Inject PlayerController mPlayerController;
+
+    LibraryFragment libraryFragment;
 
     public static Intent newNowPlayingIntent(Context context) {
         Intent intent = new Intent(context, LibraryActivity.class);
@@ -36,7 +42,26 @@ public class LibraryActivity extends BaseLibraryActivity {
 
     @Override
     protected Fragment onCreateFragment(Bundle savedInstanceState) {
-        return LibraryFragment.newInstance();
+
+        libraryFragment = LibraryFragment.newInstance();
+        return libraryFragment;
+    }
+
+    @Override
+    public void onBackPressed() {
+
+     if(LibraryPagerAdapter.state_net_song_fragment == 1){
+
+            libraryFragment.updateNetSongsFragment();
+            Log.d(LOG_TAG,"onBackPressed LibraryPagerAdapter 1 " );
+
+
+     } else{
+            super.onBackPressed();
+        }
+
+        Log.d(LOG_TAG,"onBackPressed " );
+
     }
 
     @Override
