@@ -40,10 +40,20 @@ public class NetSongsAdapter  extends RecyclerView.Adapter<RecyclerView.ViewHold
 
         mContext = context;
         myActivity = activity;
-    //    mList.addAll(list);
     }
 
-    public void update(List<Song> list){
+    public void clearList(){
+        mList.clear();
+        notifyDataSetChanged();
+    }
+
+    public void updateNew(List<Song> list){
+        mList.clear();
+        mList.addAll(list);
+        notifyDataSetChanged();
+    }
+
+    public void addList(List<Song> list){
         mList.addAll(list);
         notifyDataSetChanged();
     }

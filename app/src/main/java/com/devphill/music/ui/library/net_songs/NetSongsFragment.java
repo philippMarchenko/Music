@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import com.devphill.music.data.store.SharedPreferenceStore;
 import com.devphill.music.model.Constants;
 import com.devphill.music.player.PlayerController;
 import com.devphill.music.player.ServicePlayerController;
+import com.devphill.music.utils.ObjectSerializer;
 import com.marverenic.adapter.HeterogeneousAdapter;
 import com.devphill.music.R;
 import com.devphill.music.model.Song;
@@ -29,6 +31,7 @@ import com.devphill.music.view.BackgroundDecoration;
 import com.devphill.music.view.DividerDecoration;
 import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,9 +43,11 @@ import io.reactivex.schedulers.Schedulers;
 
 public class NetSongsFragment extends BaseFragment {
 
-    ProgressBar progressBar;
+    private  ProgressBar load_more_songs;
+    private  ProgressBar load_new_songs;
+
+
     private FastScrollRecyclerView mRecyclerView;
-    private HeterogeneousAdapter mAdapter;
     private NetSongsAdapter netSongsAdapter;
 
 
@@ -59,14 +64,19 @@ public class NetSongsFragment extends BaseFragment {
     public static final String SEARCH_NET_SONGS = "search_net_songs";
     private BroadcastReceiver br;
 
-    Downloader downloader;
+    private Downloader downloader;
 
-    int progressLast;
-    int playingLastPosition;
+    private int progressLast;
+    private int playingLastPosition;
 
     public static int state = 0;
 
-    OnChangeStateFragment onChangeStateFragment;
+    private OnChangeStateFragment onChangeStateFragment;
+
+    private final int STATE_LOAD_MORE = 0;
+    private final int STATE_LOAD_NEW = 1;
+
+    private int stateLoadList = STATE_LOAD_NEW;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,12 +95,13 @@ public class NetSongsFragment extends BaseFragment {
 
         getDownloadedSongList();
 
-        progressBar =  view.findViewById(R.id.progressBar2) ;
+        load_more_songs =  view.findViewById(R.id.load_more_songs) ;
+        load_new_songs =  view.findViewById(R.id.load_new_songs) ;
+        load_new_songs.setVisibility(View.VISIBLE);
+
         mRecyclerView = view.findViewById(R.id.library_page_list);
         mRecyclerView.addItemDecoration(new BackgroundDecoration());
         mRecyclerView.addItemDecoration(new DividerDecoration(getContext(), R.id.empty_layout));
-
-        progressBar.setVisibility(View.VISIBLE);
 
         mRecyclerView.getItemAnimator().setChangeDuration(0);   //фикс бага мигания елемента
 
@@ -103,10 +114,15 @@ public class NetSongsFragment extends BaseFragment {
                     @Override
                     public void onLoadMore(int page, int totalItemsCount) {
                         if (page <= numberOfPages) {
+                            Log.e(LOG_TAG, "onLoadMore " );
 
-                            progressBar.setVisibility(ProgressBar.VISIBLE);
-                            listSong(keywordsSearch + Constants.ZF_FM_NEXT_PAGE + page);
-                            Log.e(LOG_TAG, "" + page + "  " + numberOfPages);
+                            load_more_songs.setVisibility(ProgressBar.VISIBLE);
+
+                            stateLoadList = STATE_LOAD_MORE;
+
+                            getListSong(keywordsSearch + Constants.ZF_FM_NEXT_PAGE + page);
+                          //  mSongs.clear();
+                            netSongsAdapter.updateNew(mSongs);
 
                         }
                     }
@@ -121,11 +137,17 @@ public class NetSongsFragment extends BaseFragment {
             public void onReceive(Context context, Intent intent) {
                 Log.d(LOG_TAG,"onReceive search");
 
+                stateLoadList = STATE_LOAD_NEW;
+
                 mSongs.clear();
-                netSongsAdapter.notifyDataSetChanged();
-                progressBar.setVisibility(View.VISIBLE);
+                netSongsAdapter.clearList();
+                load_new_songs.setVisibility(View.VISIBLE);
+
                 keywordsSearch = intent.getStringExtra("search");
-                listSong(keywordsSearch);
+
+
+
+                getListSong(keywordsSearch);
 
             }
         };
@@ -138,14 +160,16 @@ public class NetSongsFragment extends BaseFragment {
         view.setPadding(paddingH, 0, paddingH, 0);
 
 
-        String netType = getNetworkType(getContext());
+    /*    String netType = getNetworkType(getContext());
         if(netType == null){
             Toast.makeText(getContext(), "Подключение к сети отсутствует!", Toast.LENGTH_LONG).show();
-            progressBar.setVisibility(View.INVISIBLE);
+            load_new_songs.setVisibility(View.INVISIBLE);
+            load_more_songs.setVisibility(View.INVISIBLE);
+
         }
         else {
-            listSong("элджей");
-        }
+            getListSong("элджей");
+        }*/
 
         Log.d(LOG_TAG,"onCreateView");
 
@@ -237,7 +261,8 @@ public class NetSongsFragment extends BaseFragment {
 
     }
 
-    public void listSong (String keywords){
+    public void getListSong (String keywords){
+
         ParserPageZFFM parserPageZFFM = new ParserPageZFFM();
 
         Observer<List> observer = new Observer<List>() {
@@ -249,10 +274,17 @@ public class NetSongsFragment extends BaseFragment {
             public void onNext(List value) {
 
                 try{
-                    mSongs.clear();
-                    mSongs.addAll(value);
 
-                    netSongsAdapter.update(value);
+                    if(stateLoadList == STATE_LOAD_NEW){
+                        mSongs.clear();
+                        mSongs.addAll(value);
+                        netSongsAdapter.updateNew(value);
+                    }
+                    else if(stateLoadList == STATE_LOAD_NEW){
+                        mSongs.addAll(value);
+                        netSongsAdapter.addList(value);
+                    }
+
                     Log.d(LOG_TAG, "onNext mSongs size " + mSongs.size());
                     Log.d(LOG_TAG, "numberOfPages " + numberOfPages);
 
@@ -264,10 +296,12 @@ public class NetSongsFragment extends BaseFragment {
                             String downloadedSongStoargeLocal =  Downloader.folder.getAbsolutePath() + downloadedSongsList.get(j).getArtistName() + " - " + downloadedSongsList.get(j).getSongName();
                             if(downloadedSongStoargeLocal.equals(songStoargeLocal)){ //совпадает ссылка скачаной песни с песней с сети
                                 mSongs.get(i).setDownloadStatus(Song.SONG_DOWNLOADED);
+                                Log.d(LOG_TAG, "downloadedSongStoargeLocal " + downloadedSongStoargeLocal);
+
                             }
                         }
                     }
-
+                    netSongsAdapter.notifyDataSetChanged();
                     Log.d(LOG_TAG, "onNext: size " + value.size());
                 }
                 catch (Exception e){
@@ -285,9 +319,13 @@ public class NetSongsFragment extends BaseFragment {
             @Override
             public void onComplete() {
                 numberOfPages = parserPageZFFM.getNumberOfItems()/50;
+
                 int numberOfPages1 =  parserPageZFFM.getNumberOfItems()%50;
                 if (numberOfPages1 != 0){ numberOfPages++;}
-                progressBar.setVisibility(ProgressBar.INVISIBLE);
+
+                load_more_songs.setVisibility(ProgressBar.INVISIBLE);
+                load_new_songs.setVisibility(ProgressBar.INVISIBLE);
+
                 Log.d(LOG_TAG, "onComplete: All Done!");
             }
         };
@@ -309,6 +347,8 @@ public class NetSongsFragment extends BaseFragment {
         }
     }
 
+
+
     private void getDownloadedSongList(){
 
         try{
@@ -328,7 +368,6 @@ public class NetSongsFragment extends BaseFragment {
         }
         return null;
     }
-
 
     public interface OnChangeStateFragment{
         void changeFragment(String songUrl);
