@@ -97,7 +97,7 @@ public class NetSongsFragment extends BaseFragment {
 
         load_more_songs =  view.findViewById(R.id.load_more_songs) ;
         load_new_songs =  view.findViewById(R.id.load_new_songs) ;
-        load_new_songs.setVisibility(View.VISIBLE);
+      //  load_new_songs.setVisibility(View.VISIBLE);
 
         mRecyclerView = view.findViewById(R.id.library_page_list);
         mRecyclerView.addItemDecoration(new BackgroundDecoration());

@@ -1,40 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-en-rIN\\values-en-rIN.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\values-en-rIN\\values-en-rIN.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,135,206,273,338,417,486",
-                        "endColumns": "79,70,66,64,78,68,64",
-                        "endOffsets": "130,201,268,333,412,481,546"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-en-rIN\\values-en-rIN.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\26a924d7a30fb708df60fa40e3667fa8\\res\\values-en-rIN\\values-en-rIN.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,135,206,273,338,417,486",
-                        "endColumns": "79,70,66,64,78,68,64",
-                        "endOffsets": "130,201,268,333,412,481,546"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-en-rIN\\values-en-rIN.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\values-en-rIN\\values-en-rIN.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",

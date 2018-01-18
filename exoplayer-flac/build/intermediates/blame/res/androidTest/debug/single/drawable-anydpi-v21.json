@@ -1,43 +1,19 @@
 [
     {
-        "merged": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-anydpi-v21\\exo_controls_next.xml",
-        "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\drawable-anydpi-v21\\exo_controls_next.xml"
-    },
-    {
         "merged": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-anydpi-v21\\exo_controls_previous.xml",
         "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\26a924d7a30fb708df60fa40e3667fa8\\res\\drawable-anydpi-v21\\exo_controls_previous.xml"
-    },
-    {
-        "merged": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-anydpi-v21\\exo_controls_pause.xml",
-        "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\drawable-anydpi-v21\\exo_controls_pause.xml"
     },
     {
         "merged": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-anydpi-v21\\exo_controls_next.xml",
         "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\26a924d7a30fb708df60fa40e3667fa8\\res\\drawable-anydpi-v21\\exo_controls_next.xml"
     },
     {
-        "merged": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-anydpi-v21\\exo_controls_play.xml",
-        "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\drawable-anydpi-v21\\exo_controls_play.xml"
-    },
-    {
         "merged": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-anydpi-v21\\exo_controls_fastforward.xml",
         "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\26a924d7a30fb708df60fa40e3667fa8\\res\\drawable-anydpi-v21\\exo_controls_fastforward.xml"
     },
     {
-        "merged": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-anydpi-v21\\exo_controls_rewind.xml",
-        "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\drawable-anydpi-v21\\exo_controls_rewind.xml"
-    },
-    {
-        "merged": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-anydpi-v21\\exo_controls_fastforward.xml",
-        "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\drawable-anydpi-v21\\exo_controls_fastforward.xml"
-    },
-    {
         "merged": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-anydpi-v21\\exo_controls_rewind.xml",
         "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\26a924d7a30fb708df60fa40e3667fa8\\res\\drawable-anydpi-v21\\exo_controls_rewind.xml"
-    },
-    {
-        "merged": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-anydpi-v21\\exo_controls_previous.xml",
-        "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\drawable-anydpi-v21\\exo_controls_previous.xml"
     },
     {
         "merged": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-anydpi-v21\\exo_controls_play.xml",

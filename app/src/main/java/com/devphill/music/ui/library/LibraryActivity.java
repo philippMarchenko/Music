@@ -32,7 +32,7 @@ public class LibraryActivity extends BaseLibraryActivity {
 
     @Inject PlayerController mPlayerController;
 
-    LibraryFragment libraryFragment;
+    private LibraryFragment libraryFragment;
 
     public static Intent newNowPlayingIntent(Context context) {
         Intent intent = new Intent(context, LibraryActivity.class);

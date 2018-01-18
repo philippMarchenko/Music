@@ -16,40 +16,10 @@
             ]
         },
         {
-            "outputFile": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\incremental\\mergeDebugAndroidTestResources\\merged.dir\\values-ne-rNP\\values-ne-rNP.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\values-ne-rNP\\values-ne-rNP.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,137,210,282,353,432,510",
-                        "endColumns": "81,72,71,70,78,77,70",
-                        "endOffsets": "132,205,277,348,427,505,576"
-                    }
-                }
-            ]
-        },
-        {
             "outputFile": "D:\\studio\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-ne-rNP\\values-ne-rNP.xml",
             "map": [
                 {
                     "source": "C:\\Users\\Филипп\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\26a924d7a30fb708df60fa40e3667fa8\\res\\values-ne-rNP\\values-ne-rNP.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8",
-                        "startColumns": "4,4,4,4,4,4,4",
-                        "startOffsets": "55,137,210,282,353,432,510",
-                        "endColumns": "81,72,71,70,78,77,70",
-                        "endOffsets": "132,205,277,348,427,505,576"
-                    }
-                }
-            ]
-        },
-        {
-            "outputFile": "D:\\android\\Music\\exoplayer-flac\\build\\intermediates\\res\\merged\\androidTest\\debug\\values-ne-rNP\\values-ne-rNP.xml",
-            "map": [
-                {
-                    "source": "C:\\Users\\Valera\\.gradle\\caches\\transforms-1\\files-1.1\\exoplayer-r2.3.1.aar\\986851aabbee627ccae9dcbdd6edbcb7\\res\\values-ne-rNP\\values-ne-rNP.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8",
                         "startColumns": "4,4,4,4,4,4,4",

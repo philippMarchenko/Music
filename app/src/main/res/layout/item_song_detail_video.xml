@@ -22,7 +22,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="10dp"
             android:rotation="90"
-            app:srcCompat="@drawable/right" />
+            app:srcCompat="@drawable/ic_arrow_left_black_48dp" />
 
         <TextView
             android:id="@+id/song_name"

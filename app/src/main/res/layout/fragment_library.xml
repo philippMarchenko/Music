@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
         <variable
@@ -9,71 +10,92 @@
             type="com.devphill.music.ui.library.LibraryViewModel"/>
     </data>
 
-    <RelativeLayout
+    <android.support.v4.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
 
-        <android.support.v4.widget.SwipeRefreshLayout
-            android:id="@+id/library_refresh_layout"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/toolbar_container"
-            app:colorSchemeColors="@{viewModel.refreshIndicatorColors}"
-            app:enabled="@{viewModel.libraryRefreshing}"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            app:refreshing="@{viewModel.libraryRefreshing}">
+            android:layout_height="match_parent">
 
-            <android.support.v4.view.ViewPager
-                android:id="@+id/library_pager"
+            <android.support.v4.widget.SwipeRefreshLayout
+                android:id="@+id/library_refresh_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:saveEnabled="true"
-                app:adapter="@{viewModel.pagerAdapter}"
-                app:page="@={viewModel.page}" />
+                android:layout_below="@+id/toolbar_container"
+                app:colorSchemeColors="@{viewModel.refreshIndicatorColors}"
+                app:enabled="@{viewModel.libraryRefreshing}"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                app:refreshing="@{viewModel.libraryRefreshing}">
 
-        </android.support.v4.widget.SwipeRefreshLayout>
+                <android.support.v4.view.ViewPager
+                    android:id="@+id/library_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:saveEnabled="true"
+                    app:adapter="@{viewModel.pagerAdapter}"
+                    app:page="@={viewModel.page}" />
 
-        <com.devphill.music.view.FABMenu
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="@dimen/fab_margin"
-            android:src="@drawable/ic_add_24dp"
-            app:children="@{viewModel.fabMenuItems}"
-            app:shown="@{viewModel.fabVisible}"
-            app:rippleColor="#8fff"
-            app:fabSize="normal"
-            app:layout_behavior="com.devphill.music.view.FABMenu$Behavior"/>
+            </android.support.v4.widget.SwipeRefreshLayout>
 
-        <FrameLayout
-            android:id="@+id/toolbar_container"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/primary"
-            android:elevation="0dp"
-           >
-
-            <android.support.design.widget.TabLayout
-                android:id="@+id/library_tabs"
-                android:layout_width="fill_parent"
+            <com.devphill.music.view.FABMenu
+                android:id="@+id/fab"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="56dp"
-                android:layoutDirection="ltr"
-                app:tabIndicatorColor="?attr/colorAccent"
-                app:tabMode="scrollable"
-                app:tabSelectedTextColor="#fff"
-                app:tabTextColor="#bfff" />
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_gravity="end|bottom"
+                android:layout_margin="@dimen/fab_margin"
+                android:src="@drawable/ic_add_24dp"
+                app:children="@{viewModel.fabMenuItems}"
+                app:fabSize="normal"
+                app:layout_behavior="com.devphill.music.view.FABMenu$Behavior"
+                app:rippleColor="#8fff"
+                app:shown="@{viewModel.fabVisible}" />
 
-            <com.mancj.materialsearchbar.MaterialSearchBar
-                style="@style/MaterialSearchBarLight"
-                app:mt_hint="Custom hint"
-                app:mt_maxSuggestionsCount="10"
+            <FrameLayout
+                android:id="@+id/toolbar_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/searchBar"
-                android:layout_margin="5dp"/>
-        </FrameLayout>
+                android:background="@color/primary"
+                android:elevation="0dp"
+                >
 
-    </RelativeLayout>
+                <android.support.design.widget.TabLayout
+                    android:id="@+id/library_tabs"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="56dp"
+                    android:layoutDirection="ltr"
+                    app:tabIndicatorColor="?attr/colorAccent"
+                    app:tabMode="scrollable"
+                    app:tabSelectedTextColor="#fff"
+                    app:tabTextColor="#bfff" />
+
+                <com.mancj.materialsearchbar.MaterialSearchBar
+                    style="@style/MaterialSearchBarLight"
+                    app:mt_hint="Custom hint"
+                    app:mt_maxSuggestionsCount="10"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/searchBar"
+                    android:layout_margin="5dp"/>
+            </FrameLayout>
+
+        </RelativeLayout>
+
+        <android.support.design.widget.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/nav_header_main"
+            app:menu="@menu/activity_main_drawer" />
+
+    </android.support.v4.widget.DrawerLayout>
+
 </layout>
