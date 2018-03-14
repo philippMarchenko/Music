@@ -22,6 +22,9 @@ import com.devphill.music.data.store.SharedPreferenceStore;
 import com.devphill.music.model.Constants;
 import com.devphill.music.player.PlayerController;
 import com.devphill.music.player.ServicePlayerController;
+import com.devphill.music.ui.library.net_songs.give_pop_songs_and_radio.GiveTracksAndRadio;
+import com.devphill.music.ui.library.net_songs.give_pop_songs_and_radio.ObjectTrack;
+import com.devphill.music.ui.library.net_songs.give_pop_songs_and_radio.SongsMultiple;
 import com.devphill.music.utils.ObjectSerializer;
 import com.marverenic.adapter.HeterogeneousAdapter;
 import com.devphill.music.R;
@@ -50,6 +53,7 @@ public class NetSongsFragment extends BaseFragment {
     private FastScrollRecyclerView mRecyclerView;
     private NetSongsAdapter netSongsAdapter;
 
+    private GiveTracksAndRadio giveTracksAndRadio;
 
     private List<Song> mSongs;
     private List<Song> downloadedSongsList;
@@ -87,13 +91,29 @@ public class NetSongsFragment extends BaseFragment {
         mSongs = new ArrayList<>();
         downloadedSongsList = new ArrayList<>();
 
+
+
+        giveTracksAndRadio = new GiveTracksAndRadio(new GiveTracksAndRadio.GiveTracksAndRadioListener() {
+            @Override
+            public void trackCompeted(List<ObjectTrack> tracksArray) {
+                SongsMultiple songsMultiple = new SongsMultiple();
+                mSongs = songsMultiple.getSongs(tracksArray);
+                netSongsAdapter.updateNew(mSongs);
+
+            }
+        });
+        giveTracksAndRadio.give();
+
+
+        //giveTracksAndRadio.getTracksArray();
+
         mPlayerController = new ServicePlayerController(getContext(), new SharedPreferenceStore(getContext()));
 
-        downloader = new Downloader(getContext());
+   /*     downloader = new Downloader(getContext());
         downloader.createMyFolder();
 
 
-        getDownloadedSongList();
+        getDownloadedSongList();*/
 
         load_more_songs =  view.findViewById(R.id.load_more_songs) ;
         load_new_songs =  view.findViewById(R.id.load_new_songs) ;
@@ -338,7 +358,7 @@ public class NetSongsFragment extends BaseFragment {
         mRecyclerView = null;
         netSongsAdapter = null;
         mSongs = null;
-        downloader.release();
+        try {downloader.release();} catch (Exception e){Log.d(LOG_TAG, "Не удалось снять с регистрации приемник" + e.getMessage());}
         try {
             getContext().unregisterReceiver(br);
         }
